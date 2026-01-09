@@ -1,6 +1,6 @@
 # GitHub Desktop Guide — Falcon BMS TMS/DMS/CMS Guide Repository
 
-**Purpose:** Provide a simple, repeatable workflow for using **GitHub Desktop** with the Falcon BMS TMS/DMS/CMS HOTAS Usage Guide repository, focusing on governance documents (`docs/`), WIP files (`WIP/`), and the main guide source (`guide-v*.tex`).
+**Purpose:** Provide a simple, repeatable workflow for using **GitHub Desktop** with the Falcon BMS TMS/DMS/CMS HOTAS Usage Guide repository, focusing on governance documents (`docs/`), WIP files (`WIP/`), and the main guide source (`guide.tex` + versioned snapshots in `WIP/GUIDE/`).
 
 ---
 
@@ -8,218 +8,306 @@
 
 - A GitHub account with access to the repository.
 - **GitHub Desktop** installed (latest stable version).
-- Local LaTeX toolchain (for compiling `guide-v*.tex`).
+- Local LaTeX toolchain (for compiling the guide).
 - Word or compatible editor (for `.docx` governance documents if needed).
 
 Repository root structure (simplified):
 
 ```text
 project-root/
-├── guide-v0.2.2.0-20260108.tex      # Main LaTeX source (active)
-├── docs/                            # Governance and tracking documents
-├── WIP/                             # Work-in-progress sections, tables, notes, visuals
+├── guide.tex                        # Canonical main LaTeX source (tracked by Git)
+├── WIP/
+│   └── GUIDE/
+│       ├── guide-v0.2.2.0-20260108.tex   # Current snapshot (example)
+│       └── ...                           # Older snapshots and history
+├── docs/                            # Governance and tracking documents (.md as source)
 ├── ARCHIVE/                         # Approved or deprecated WIP files and old guide versions
 ├── README.md                        # Project overview
 └── md-to-docx-v2.9.6.bat            # Markdown → DOCX batch converter
 ```
 
----
+**Key idea:**
 
-## 2. Cloning and Updating the Repository
-
-### 2.1 First-Time Clone
-
-1. Open **GitHub Desktop**.
-2. Click **File → Clone Repository...**.
-3. Select the repository from your GitHub account.
-4. Choose a local path (e.g. `C:\Projects\falcon-bms-tms-dms-cms-guide`).
-5. Click **Clone**.
-
-### 2.2 Regular Updates (Before Working)
-
-Before any editing session:
-
-1. Open the repository in GitHub Desktop.
-2. Ensure the **current branch** is `main` (or the designated default branch).
-3. Click **Fetch origin**.
-4. If there are remote changes, click **Pull origin**.
-
-This ensures local files match the latest committed state before editing.
+- `guide.tex` (na raiz) é o arquivo **canônico** que o Git/GitHub acompanham ao longo do tempo.
+- `WIP/GUIDE/guide-v...tex` são **snapshots versionados** (por número de versão + data) e servem como cópias de segurança e marco editorial.
 
 ---
 
-## 3. Editing Governance Documents (Markdown + DOCX)
+## 2. Clonando e Atualizando o Repositório
 
-Governance documents live in `docs/` and are maintained primarily as **Markdown** (`.md`), with `.docx` versions generated for easier reading.
+### 2.1 Primeiro clone
 
-### 3.1 Typical Files in `docs/`
+1. Abra o **GitHub Desktop**.
+2. Clique em **File → Clone Repository...**.
+3. Selecione o repositório `carlos-nader/falcon-bms-hotas-tms-dms-cms-guide` na sua conta.
+4. Escolha um caminho local (por exemplo `C:\Projects\falcon-bms-hotas-tms-dms-cms-guide`).
+5. Clique em **Clone**.
+
+### 2.2 Atualizações regulares (antes de trabalhar)
+
+Antes de qualquer sessão de edição:
+
+1. Abra o repositório no GitHub Desktop.
+2. Confirme que a **branch atual** é `main` (ou outra branch de trabalho que você criou).
+3. Clique em **Fetch origin**.
+4. Se houver mudanças remotas, clique em **Pull origin**.
+
+Isso garante que seus arquivos locais estão alinhados com o que está no GitHub.
+
+---
+
+## 3. Documentos de Governança (Markdown + DOCX)
+
+Documentos de governança ficam em `docs/` e são mantidos principalmente como **Markdown** (`.md`). As versões `.docx` são geradas a partir dos `.md`.
+
+### 3.1 Arquivos típicos em `docs/`
 
 - `BRIEFING-v0-1-4-1.md` / `.docx`
 - `version-system-v4-2.md` / `.docx`
 - `WIP-FILE-NAMING-v1-3.md` / `.docx`
 - `PROJECT-TRACKING-v4-1-2.md` / `.docx`
+- `GITHUB-DESKTOP-GUIDE.md` / `.docx` (opcional)
+- `PHASE-3-TECHNICAL-PLAN.md` / `.docx`
+- `SESSION-8-PHASE-2-SUMMARY.md` / `.docx`
 
-### 3.2 Edit Workflow
+### 3.2 Fluxo de edição (governança)
 
-1. **Pull latest changes** in GitHub Desktop.
-2. Open the relevant `.md` file in your preferred text editor (VS Code, etc.).
-3. Apply the changes (in English, following the brief).
-4. Save the `.md` file.
-5. Run `md-to-docx-v2.9.6.bat` (from the project root) to regenerate the corresponding `.docx` in `docs/`.
-   - Confirm that the script picked up the updated `.md`.
-6. Open the new `.docx` to quickly verify formatting if necessary.
+1. **Pull origin** no GitHub Desktop.
+2. Abra o `.md` relevante no seu editor preferido (por exemplo VS Code).
+3. Edite o conteúdo (sempre em **inglês**, seguindo o BRIEFING).
+4. Salve o `.md`.
+5. Execute `md-to-docx-v2.9.6.bat` a partir da raiz do projeto.
+   - O script gera/regera os `.docx` correspondentes em `docs/`.
+6. Abra o `.docx` se quiser verificar rapidamente a formatação.
 
-### 3.3 Committing Governance Changes
+### 3.3 Commit de mudanças de governança
 
-In GitHub Desktop:
+No GitHub Desktop:
 
-1. Verify that the changed files include:
-   - The updated `.md` in `docs/`.
-   - The regenerated `.docx` in `docs/`.
-2. In the **Changes** tab, review the diffs for the `.md` files (these are authoritative).
-3. Write a **descriptive commit message**, for example:
+1. Confirme que em **Changes** aparecem:
+   - Os `.md` alterados em `docs/`.
+   - Os `.docx` regenerados em `docs/`.
+2. Revise o diff dos `.md` (são a fonte de verdade).
+3. Escreva uma mensagem de commit descritiva, por exemplo:
    - `docs: update version-system to v4.2 (EN)`
    - `docs: add session 8 phase 2 summary`
-4. Click **Commit to main**.
-5. Click **Push origin** to publish changes to GitHub.
+4. Clique em **Commit to main** (ou na branch de trabalho).
+5. Clique em **Push origin** para enviar ao GitHub.
 
 ---
 
-## 4. Working with WIP Files (`WIP/`)
+## 4. Arquivos WIP (`WIP/`)
 
-WIP files are governed by **WIP-FILE-NAMING v1.3**, using status codes like `dev`, `review`, `final`, `approved`, `deprecated` embedded in filenames.
+WIP files seguem as regras de **WIP-FILE-NAMING v1.3**, usando status no nome (`dev`, `review`, `final`, `approved`, `deprecated`).
 
-### 4.1 Location and Types
+### 4.1 Localização e tipos
 
-- `WIP/section-*.tex` — Section content under development.
-- `WIP/table-*.tex` — HOTAS tables under development.
-- `WIP/notes-*.md` — Research notes and scratchpads.
-- `WIP/visual-*.*` — Diagrams and schematics.
+- `WIP/section-*.tex` — conteúdo de seções em desenvolvimento.
+- `WIP/table-*.tex` — tabelas HOTAS em desenvolvimento.
+- `WIP/notes-*.md` — notas e rascunhos.
+- `WIP/visual-*.*` — diagramas e figuras.
+- `WIP/GUIDE/guide-v*.tex` — snapshots versionados do guia principal.
 
-### 4.2 Basic Workflow with GitHub Desktop
+### 4.2 Fluxo básico com GitHub Desktop (WIP comum)
 
-1. **Pull origin** before editing.
-2. Open the relevant WIP files in your LaTeX or text editor.
-3. Make changes according to the brief and WIP naming rules.
-4. If status changes (e.g. `dev` → `review` or `review` → `final`), rename the file accordingly.
-5. Back in GitHub Desktop, confirm the modified and renamed files appear under **Changes**.
-6. Commit with a message like:
+1. **Pull origin** antes de editar.
+2. Edite os arquivos WIP necessários no seu editor (LaTeX, Markdown, etc.).
+3. Se o status mudou (por exemplo `dev` → `review`), renomeie o arquivo seguindo WIP-FILE-NAMING.
+4. De volta ao GitHub Desktop, confira os arquivos listados em **Changes**.
+5. Faça commit com uma mensagem clara, por exemplo:
    - `wip: refine cms 5.2 tables (review)`
    - `wip: promote cms 5.1 section to final`
-7. Push to origin.
+6. **Push origin**.
 
-No version bump of `guide-v*.tex` is required until WIP content is integrated into the main guide.
+Importante: mudanças em WIP **não** mudam a versão do guia até serem integradas no snapshot e propagadas para `guide.tex`.
 
 ---
 
-## 5. Editing and Versioning the Main Guide (`guide-v*.tex`)
+## 5. Editando o Guia Principal (`guide.tex` + snapshots em `WIP/GUIDE/`)
 
-The main guide file follows the format:
+### 5.1 Conceito de snapshot vs arquivo canônico
 
-```text
-guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex
-```
+- **Snapshots versionados**: `WIP/GUIDE/guide-vMAJOR.MINOR[.PATCH[.SUBPATCH]]-YYYYMMDD.tex`.
+  - Contêm macros `\docversion` e `\docbuild` com a versão completa.
+  - Servem como marcos editoriais e ponto de referência.
 
-### 5.1 Safe Edit Workflow
+- **Arquivo canônico**: `guide.tex` (raiz do repositório).
+  - Sempre deve ser byte-idêntico ao snapshot ativo.
+  - É o arquivo que o Git/GitHub usam para diffs entre commits.
 
-1. **Pull origin** to ensure you have the latest main guide.
-2. Edit `guide-v*.tex` with your LaTeX editor.
-3. Run `pdflatex` (or your preferred LaTeX engine) to confirm the document compiles.
-4. Update the version macros in the preamble **only if** the change requires a version bump (according to `VERSION-SYSTEM v4.2`).
-5. Rename the `.tex` file if `\docversion` or `\docbuild` changed.
-6. Update `PROJECT-TRACKING` with the new version and a short description.
+### 5.2 Fluxo seguro de edição do guia
 
-### 5.2 Committing Main Guide Changes
+1. **Pull origin**.
+2. Localize o snapshot ativo em `WIP/GUIDE/`, por exemplo:
 
-After compilation and tracking updates:
+   ```text
+   WIP/GUIDE/guide-v0.2.2.0-20260108.tex
+   ```
 
-1. In GitHub Desktop, review the changed files:
-   - New `guide-v*.tex`.
-   - Possibly new or moved older `guide-v*.tex` files into `ARCHIVE/`.
-   - Updated `PROJECT-TRACKING` and any related docs.
-2. Commit with a message such as:
+3. Edite **apenas o snapshot** em `WIP/GUIDE/` (não edite `guide.tex` diretamente).
+4. Atualize `\docversion` e `\docbuild` **somente se** a mudança exigir bump de versão, conforme `version-system-v4-2.md`.
+5. Compile o snapshot com LaTeX para garantir que gera PDF sem erros.
+6. Quando estiver satisfeito:
+   - Copie o snapshot por cima de `guide.tex` na raiz, garantindo que fiquem idênticos.
+
+   Por exemplo:
+
+   - Abrir os dois arquivos no editor.
+   - Substituir o conteúdo de `guide.tex` pelo do `guide-v...tex`.
+
+7. Atualize `PROJECT-TRACKING` com a nova versão e breve descrição.
+
+### 5.3 Commit de mudanças do guia
+
+Depois de compilar e sincronizar snapshot → `guide.tex`:
+
+1. No GitHub Desktop, revise **Changes**:
+   - `guide.tex` modificado.
+   - Snapshot novo/atualizado em `WIP/GUIDE/` (se houve mudança de versão ou data).
+   - `PROJECT-TRACKING` atualizado.
+2. Escreva uma mensagem de commit, por exemplo:
    - `guide: bump to v0.2.3.0 (cms 5.2 integration)`
-3. Push to origin.
+3. **Commit** e depois **Push origin**.
+
+Esse fluxo garante que o GitHub mostre diffs limpos em `guide.tex` ao longo da história.
 
 ---
 
-## 6. Branching Strategy
+## 6. Branches, Pull Requests e Reversão Simples
 
-For this project, the primary workflow can remain **single-branch** (`main`) with disciplined commits, as long as:
+Se a branch `main` estiver protegida, o fluxo recomendado é:
 
-- Commits are **small and descriptive**.
-- Governance docs (`docs/*.md`) are treated as the **single source of truth** for project rules.
-- `guide-v*.tex` is only bumped when version criteria are clearly met.
+### 6.1 Criar uma branch de trabalho (no GitHub Desktop)
 
-If a separate branch is desired for experimental work:
+1. No topo da janela, clique na lista de branches.
+2. Selecione **New Branch...**.
+3. Dê um nome descritivo, por exemplo: `feature/cms-5-2-tables`.
+4. Confirme que ela será criada a partir de `main` e clique em **Create branch**.
+5. Certifique-se de que a branch nova está selecionada.
 
-1. Create a new branch from `main` in GitHub Desktop (e.g. `feature/cms-tables`).
-2. Work and commit on that branch.
-3. Open a pull request on GitHub when ready and merge back into `main`.
+### 6.2 Trabalhar normalmente nessa branch
 
-For now, a single-branch model is usually sufficient given the single-author nature of the project.
+- Siga os fluxos anteriores para:
+  - editar WIP;
+  - atualizar snapshot em `WIP/GUIDE/`;
+  - copiar para `guide.tex`;
+  - atualizar docs.
+- Faça commits pequenos e descritivos.
+- Quando terminar um conjunto de mudanças coerente, clique em **Push origin**.
+
+### 6.3 Abrir Pull Request no GitHub (interface web)
+
+1. Após dar **Push** da branch nova, abra o repositório no navegador.
+2. O GitHub geralmente mostra um banner: “Compare & pull request”. Clique nele.
+3. Confira que o PR é **de** `feature/...` **para** `main`.
+4. Escreva um título e descrição breves.
+5. Crie o Pull Request.
+
+Na aba **Files changed**, você verá os diffs (linhas vermelhas/verde) em `guide.tex`, docs, etc.
+
+Se algo estiver errado, basta **voltar para a branch no GitHub Desktop**, corrigir, commitar e dar outro **Push**: o PR é atualizado automaticamente.
+
+### 6.4 Revisar e fazer merge do PR
+
+Quando tudo estiver ok:
+
+1. Na página do PR, clique em **Merge pull request**.
+2. Confirme o merge.
+3. Opcionalmente, apague a branch `feature/...` depois de mesclar.
+
+Agora a `main` passa a conter aquelas mudanças.
+
+### 6.5 Reverter um commit (GitHub Desktop, forma simples)
+
+Se você perceber que **um commit específico** em `main` trouxe um problema:
+
+1. No GitHub Desktop, vá em **History**.
+2. Localize o commit problemático.
+3. Clique com o botão direito nele e escolha **Revert this commit**.
+4. O GitHub Desktop cria um **novo commit** que desfaz as mudanças daquele commit.
+5. Clique em **Push origin**.
+
+Isso não apaga o commit antigo (histórico continua intacto), mas volta o conteúdo ao estado anterior de forma segura.
 
 ---
 
-## 7. Typical Session Checklists
+## 7. Checklists de Sessão
 
-### 7.1 Governance-Only Session (Docs)
-
-1. **Pull origin** in GitHub Desktop.
-2. Edit one or more `.md` files in `docs/`.
-3. Run `md-to-docx-v2.9.6.bat`.
-4. Verify the updated `.docx`.
-5. Commit `.md` + `.docx` with a descriptive message.
-6. Push to origin.
-
-### 7.2 WIP Content Session
+### 7.1 Sessão só de governança (docs)
 
 1. **Pull origin**.
-2. Edit `WIP/section-*`, `WIP/table-*`, `WIP/notes-*` as needed.
-3. If status changes, rename files according to WIP naming rules.
-4. Compile test snippets if necessary.
-5. Commit WIP changes with a clear message.
-6. Push to origin.
+2. Editar `.md` em `docs/`.
+3. Rodar `md-to-docx-v2.9.6.bat`.
+4. Conferir `.docx` se necessário.
+5. Commit (`.md` + `.docx`) com mensagem clara.
+6. **Push origin**.
 
-### 7.3 Integration Session (Guide Version Bump)
+### 7.2 Sessão de WIP (sem mexer no guia)
 
 1. **Pull origin**.
-2. Integrate `WIP/` content into `guide-v*.tex`.
-3. Update version macros and file name if needed.
-4. Rebuild the guide PDF.
-5. Move integrated WIP files to `ARCHIVE/` as `approved`.
-6. Update `PROJECT-TRACKING`.
-7. Commit and push.
+2. Editar `WIP/section-*`, `WIP/table-*`, `WIP/notes-*`.
+3. Ajustar nomes dos arquivos se o status mudar.
+4. Commit WIP com mensagem clara.
+5. **Push origin**.
+
+### 7.3 Sessão de integração (nova versão do guia)
+
+1. **Pull origin**.
+2. Integrar conteúdo de `WIP/` no snapshot em `WIP/GUIDE/guide-v...tex`.
+3. Decidir se há bump de versão (MINOR/PATCH/SUBPATCH) segundo `version-system-v4-2.md`.
+4. Atualizar `\docversion`, `\docbuild` e, se necessário, o nome do snapshot.
+5. Compilar o snapshot e confirmar que o PDF está ok.
+6. Copiar o snapshot atualizado por cima de `guide.tex`.
+7. Atualizar `PROJECT-TRACKING`.
+8. Commit (`guide.tex` + snapshot + tracking) e **Push origin**.
+
+Se estiver usando branch + PR:
+
+9. Abrir PR para `main` e fazer merge quando estiver satisfeito.
 
 ---
 
-## 8. Troubleshooting with GitHub Desktop
+## 8. Resolução de Problemas no GitHub Desktop
 
-### 8.1 Merge Conflicts
+### 8.1 Merge conflicts
 
-If GitHub Desktop reports a conflict:
+Se o GitHub Desktop reportar conflito:
 
-1. Click **View conflicts**.
-2. Use an external editor (VS Code, etc.) to resolve conflicts in `.md` or `.tex` files.
-3. Mark conflicts as resolved in GitHub Desktop.
-4. Commit the resolution and push.
+1. Clique em **View conflicts**.
+2. Abra os arquivos em conflito (por exemplo `.md` ou `.tex`) no seu editor.
+3. Resolva manualmente os blocos `<<<<<<<`, `=======`, `>>>>>>>`.
+4. Salve os arquivos.
+5. Volte ao GitHub Desktop, marque os conflitos como resolvidos.
+6. Commit de resolução e **Push origin**.
 
-### 8.2 Accidental Commits
+### 8.2 Commits acidentais com arquivos indesejados
 
-If a commit includes unwanted files (e.g. LaTeX build artifacts):
+Se um commit incluiu artefatos de build (por exemplo `.aux`, `.log`, `.synctex.gz`, `.pdf`):
 
-1. Add those patterns to `.gitignore` (e.g. `*.aux`, `*.log`, `*.synctex.gz`, `*.pdf`).
-2. Remove the unwanted files from the index (via GitHub Desktop or command line).
-3. Commit a cleanup change.
+1. Adicione esses padrões a `.gitignore`, por exemplo:
+
+   ```text
+   *.aux
+   *.log
+   *.synctex.gz
+   *.pdf
+   ```
+
+2. Remova os arquivos já rastreados pelo Git, se necessário.
+3. Faça um commit de limpeza.
 
 ---
 
-## 9. Conventions and Best Practices
+## 9. Convenções e Boas Práticas
 
-- Always treat `docs/*.md` as the **authoritative source**; `.docx` is an output.
-- Commit `.md` and `.docx` together to avoid divergence.
-- Keep commit messages short but precise; reference versions when relevant.
-- Pull before every session; push after every coherent unit of work.
-- Do not manually edit generated `.docx` files; regenerate from Markdown instead.
+- Trate sempre `docs/*.md` como **fonte de verdade**; `.docx` é somente saída.
+- Nunca edite `.docx` manualmente; sempre regenere a partir do `.md`.
+- Mantenha commits **pequenos e descritivos**, especialmente quando mexer em `guide.tex`.
+- Sempre faça **Pull** antes de começar a trabalhar e **Push** ao concluir um bloco lógico de trabalho.
+- Para mudanças grandes no guia, prefira usar **branch de feature + Pull Request**, mesmo sendo single-author. Isso dá um lugar próprio para revisar diffs antes de afetar a `main`.
+- Sincronize sempre três coisas quando houver nova versão do guia:
+  - `\docversion` / `\docbuild` no LaTeX.
+  - Nome do snapshot em `WIP/GUIDE/`.
+  - Entrada correspondente em `PROJECT-TRACKING`.
 
-Following this guide keeps the repository clean, traceable, and aligned with the project's governance model while using GitHub Desktop as the main interface.
+Seguindo este guia, o repositório fica limpo, rastreável e alinhado com a governança definida, usando o GitHub Desktop como interface principal.
