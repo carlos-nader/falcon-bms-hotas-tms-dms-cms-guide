@@ -1,0 +1,69 @@
+name: 🔄 Auto-Update Guide Version in README
+
+on:
+  push:
+    paths:
+      - 'docs/version-system-v4-2.md'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Extract version from version-system-v4-2.md
+        id: extract
+        run: |
+          VERSION=$(grep -oP 'Current Active Version: v\K[0-9.]+' docs/version-system-v4-2.md | head -1)
+          
+          if [ -z "$VERSION" ]; then
+            VERSION=$(grep -oP 'Current Version: \K[0-9.]+' docs/version-system-v4-2.md | head -1)
+          fi
+          
+          if [ -z "$VERSION" ]; then
+            echo "❌ Could not extract version. Exiting."
+            exit 1
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "✅ Extracted version: $VERSION"
+
+      - name: 📅 Get today's date
+        id: date
+        run: echo "date=$(date +%Y%m%d)" >> $GITHUB_OUTPUT
+
+      - name: 🔄 Update README.md with new guide filename
+        run: |
+          NEW_GUIDE="guide-v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}.tex"
+          echo "📝 Updating README with: $NEW_GUIDE"
+          
+          sed -i "s|guide-v[0-9.]*-[0-9]*\.tex|$NEW_GUIDE|g" README.md
+          sed -i "s|**Current Version:** guide-v[0-9.]*-|**Current Version:** guide-v${{ steps.extract.outputs.version }}-|g" README.md
+          
+          echo "✅ README.md updated"
+
+      - name: ✍️ Commit and push changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          
+          if git diff --quiet; then
+            echo "ℹ️  No changes to commit"
+            exit 0
+          fi
+          
+          git add -A
+          git commit -m "🔄 Auto-update guide version to v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}" \
+            -m "Triggered by version-system-v4-2.md update"
+          
+          git push origin main
+          echo "✅ Changes pushed successfully"
