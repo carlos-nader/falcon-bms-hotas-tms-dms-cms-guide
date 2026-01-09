@@ -23,9 +23,11 @@ jobs:
       - name: 🔍 Extract version from version-system-v4-2.md
         id: extract
         run: |
+          # Try to find "Current Active Version: vX.Y.Z.W"
           VERSION=$(grep -oP 'Current Active Version: v\K[0-9.]+' docs/version-system-v4-2.md | head -1)
           
           if [ -z "$VERSION" ]; then
+            # Fallback: try "Current Version: X.Y.Z.W"
             VERSION=$(grep -oP 'Current Version: \K[0-9.]+' docs/version-system-v4-2.md | head -1)
           fi
           
@@ -46,16 +48,33 @@ jobs:
           NEW_GUIDE="guide-v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}.tex"
           echo "📝 Updating README with: $NEW_GUIDE"
           
+          # Update guide filename references in README
           sed -i "s|guide-v[0-9.]*-[0-9]*\.tex|$NEW_GUIDE|g" README.md
+          
+          # Also update version badge if exists
           sed -i "s|**Current Version:** guide-v[0-9.]*-|**Current Version:** guide-v${{ steps.extract.outputs.version }}-|g" README.md
           
           echo "✅ README.md updated"
+
+      - name: 📝 Update other docs if needed
+        run: |
+          # Update any .md files in docs/ that reference the guide version
+          if [ -f "docs/BRIEFING-v0.1.4.1.md" ]; then
+            sed -i "s|guide-v[0-9.]*-|guide-v${{ steps.extract.outputs.version }}-|g" docs/BRIEFING-v0.1.4.1.md
+            echo "✅ BRIEFING updated"
+          fi
+          
+          if [ -f "WIP-FILE-NAMING-GENERATOR-README.md" ]; then
+            sed -i "s|guide-v0-[0-9]*-[0-9]*\.tex|guide-v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}.tex|g" WIP-FILE-NAMING-GENERATOR-README.md
+            echo "✅ WIP-FILE-NAMING-GENERATOR-README.md updated"
+          fi
 
       - name: ✍️ Commit and push changes
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "GitHub Actions"
           
+          # Check if there are changes
           if git diff --quiet; then
             echo "ℹ️  No changes to commit"
             exit 0
@@ -63,7 +82,29 @@ jobs:
           
           git add -A
           git commit -m "🔄 Auto-update guide version to v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}" \
-            -m "Triggered by version-system-v4-2.md update"
+            -m "Triggered by version-system-v4-2.md update" \
+            -m "Workflow: Auto-Update Guide Version in README"
           
           git push origin main
           echo "✅ Changes pushed successfully"
+
+      - name: 📢 Create GitHub Release (if applicable)
+        if: startsWith(github.event.head_commit.message, 'Update version')
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: guide-v${{ steps.extract.outputs.version }}
+          release_name: Guide v${{ steps.extract.outputs.version }}
+          body: |
+            ## Guide Version v${{ steps.extract.outputs.version }}
+            
+            **Release Date:** ${{ steps.date.outputs.date }}
+            
+            **Filename:** guide-v${{ steps.extract.outputs.version }}-${{ steps.date.outputs.date }}.tex
+            
+            **Status:** Pre-Publication (v0.x.x.x)
+            
+            This version has been automatically generated and documented.
+          draft: false
+          prerelease: true
