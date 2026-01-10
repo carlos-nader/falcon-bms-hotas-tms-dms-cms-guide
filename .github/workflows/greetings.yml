@@ -1,0 +1,16 @@
+name: Greetings
+
+on: [pull_request_target, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "👋 Welcome to the TMS/DMS/CMS Usage Guide! Thanks for your first issue. Please check: 📋 DOCS folder for project scope and governing documents. Questions? Ask! We're here to help. 🚀"
+        pr-message: "👋 Welcome to our project! Thanks for your first pull request. Quick checklist: ✅ Used TEMPLATES/template-wip-V*.tex? ✅ Metadata block complete? ✅ Train refs from training-mission-abbrev-table-v*.md? ✅ Sources (Dash-34/Dash-1/Training Manual) cited? Our team will review soon. 🚀"
