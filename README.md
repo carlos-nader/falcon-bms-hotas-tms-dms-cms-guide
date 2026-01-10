@@ -50,8 +50,10 @@ falcon-bms-hotas-tms-dms-cms-guide/
 │   ├── Research materials          # Background & supporting info
 │   └── Utilities & notes           # Miscellaneous project aids
 │
+├── FIG/                            # Images used in the Guide
+│
 ├── WIP-version-name-generator.html # Interactive tool for WIP naming
-├── md-to-docx-v3-1-0.bat          # Batch converter (Markdown → DOCX)
+├── md-to-docx-v3-1-0.bat           # Batch converter (Markdown → DOCX)
 │
 ├── README.md                       # This file
 └── CONTRIBUTUING.md                # Contributions Guide
