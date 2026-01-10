@@ -31,12 +31,13 @@ falcon-bms-hotas-tms-dms-cms-guide/
 │   ├── Naming conventions          # Rules for WIP file naming & status
 │   ├── Versioning system           # Guide version numbering & phases
 │   ├── Project tracking            # Session log, WIP status, milestones
+│   └── Training Mission Abb. Table # Table listing Training Mission Abbreviation for use in WIP and guide files
 │
 ├── WIP/                            # Active work-in-progress files
 │   ├── section-*.tex               # Chapter sections under development
 │   ├── table-*.tex                 # HOTAS table scaffolds & content
 │   ├── notes-*.md                  # Research notes & reference material
-│   └── visual-*.*                  # Diagrams, schematics 
+│   ├── visual-*.*                  # Diagrams, schematics 
 │   └── ...                         # Other types
 │
 ├── ARCHIVE/                        # Historical & approved files
