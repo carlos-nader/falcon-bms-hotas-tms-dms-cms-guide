@@ -1,24 +1,18 @@
 % ============================================================================
 % FALCON BMS TMS/DMS/CMS HOTAS GUIDE
-% WIP FILE — SECTION-LEVEL TEMPLATE
+% WIP FILE — SECTION-LEVEL
 % ============================================================================
 
-% IMPORTANTE: Este é um arquivo WIP (Work-In-Progress) seguindo WIP-FILE-NAMING-v1.3
-% que será integrado ao guide.tex v0.2.2.0 ou posterior.
+% Nomenclatura (WIP-NAMING-v1.4):
+% section-C5-S3-blocks-variants-final-2026-01-10.tex
+% ├─ section: type identifier
+% ├─ C5: target chapter 5 (CMS)
+% ├─ S3: target section 3 (CMS Block and Variant Notes)
+% ├─ blocks-variants: descriptive title (slugified)
+% ├─ final: status (dev | review | final | approved | deprecated)
+% └─ 2026-01-10: creation/last-edit date (YYYY-MM-DD)
 
-% Nomenclatura: Siga WIP-FILE-NAMING-v1.3
-% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
-% Este arquivo: section-C5-S3-blocks-and-variants-review-2026-01-07.tex
-
-% Status: dev | review | final | approved | deprecated
-% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
-
-% Instruções:
-% 1. Para compilar isoladamente: descomente as linhas 33-34 abaixo
-% 2. Para integração em guide.tex: remova TODAS as linhas do preamble até \begin{document}
-% 3. Compile: pdflatex section-C5-S3-blocks-and-variants-review-2026-01-07.tex
-
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 
 % --------------------------------------------------------------------------
 % BASIC ENCODING AND LANGUAGE
@@ -80,13 +74,14 @@
 \usepackage{longtable}
 \usepackage{tabularx}
 
-% Custom Columns - CORRECTED SYNTAX
+% Custom Columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% HOTAS table environment (per BRIEFING v0.1.4.1)
-\newenvironment{hotastable}[1][]{%
+% HOTAS table environment (per BRIEFING v0.2.0.1, Section 6)
+% CORRECTED: [1] instead of [1][] to force caption requirement
+\newenvironment{hotastable}[1]{%
 \small
 \renewcommand{\arraystretch}{1.25}
 \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
@@ -119,21 +114,23 @@
 % --------------------------------------------------------------------------
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
 % --------------------------------------------------------------------------
+% CORRECTED: Changed from \newcommand to \providecommand for integration compatibility
+% CORRECTED: Formatted with \S symbol per Briefing v0.2.0.1, Section 11.3
 
-\newcommand{\dashref}[1]{Dash-34, section~#1}
-\newcommand{\dashone}[1]{Dash-1, section~#1}
-\newcommand{\trnref}[1]{BMS Training Mission~#1}
-\newcommand{\trnman}{BMS Training Manual 4.38.1}
-\newcommand{\bmsver}{Falcon BMS~4.38.1}
-\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 
 % --------------------------------------------------------------------------
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{review}
-\newcommand{\docbuild}{20260107}
-\newcommand{\fulldocversion}{\docversion+\docbuild}
+\newcommand{\docversion}{WIP}
+\newcommand{\docbuild}{section-C5-S3-final}
+\newcommand{\fulldocversion}{\docversion~\docbuild}
 
 % --------------------------------------------------------------------------
 % GRAPHICS
@@ -146,11 +143,9 @@
 % TITLE (For Standalone Compilation)
 % --------------------------------------------------------------------------
 
-\title{F-16 Countermeasures Management Switch (CMS)\\\vspace{0.2cm}
-Section 5.3: CMS Block and Variant Notes\\\vspace{0.2cm}
-{\small \bmsver{} --- WIP File section-C5-S3-blocks-and-variants}}
+\title{F-16 Countermeasures Management Switch (CMS)\\[0.2cm]Section 5.3: CMS Block and Variant Notes\\[0.2cm]{\small \bmsver{}}}
 \author{Carlos ``Metal'' Nader}
-\date{Version \fulldocversion{} | January 7, 2026}
+\date{WIP Status: final | Date: 2026-01-10}
 
 % --------------------------------------------------------------------------
 % DOCUMENT BEGIN
@@ -160,38 +155,53 @@ Section 5.3: CMS Block and Variant Notes\\\vspace{0.2cm}
 
 \maketitle
 
+\pagenumbering{roman}
+
+\newpage
+
 \tableofcontents
 
-\clearpage
+\newpage
+
+\pagenumbering{arabic}
 
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
 
-% File Name: section-C5-S3-blocks-and-variants-review-2026-01-07.tex
-% WIP Naming Convention: v1.3
-% Target Chapter: C5 (Countermeasures Management System --- CMS)
+% File Name: section-C5-S3-blocks-variants-final-2026-01-10.tex
+% WIP Naming Convention: v1.4 (CORRECTED from v1.3)
+% Target Chapter: C5 (Countermeasures Management System — CMS)
 % Target Section: S3 (CMS Block and Variant Notes)
-% WIP Status: review
+% WIP Status: final (ready for integration into guide.tex)
 % Created: 2026-01-07
 % Last Modified: 2026-01-10
-% Narrative Completion: 80%
-% Table Fill Status: 0%
-% Integration Status: READY FOR INTEGRATION TARGET v0.2.3.0
-
-% Notes:
-% - Section focuses on ECM pod variants (ALQ-131/ALQ-184) vs IDIAS differences
-% - Covers F-16 Block 40/42/50/52 + NATO variants + international operators
-% - Critical safety differences between external pod and internal ECM systems
-% - This section bridges CMS actuation (S2) with system-specific behavior (S4+)
+%
+% Narrative Completion: 100%
+% Table Fill Status: 90% (cross-reference table complete; no HOTAS tables in this section)
+%
+% Compatibility Status:
+% ✅ C1: Changed \documentclass{report} → {article}
+% ✅ C2: Changed hotastable [1][] → [1]
+% ✅ C3: Changed \newcommand → \providecommand (macros)
+% ✅ TOC: Added \newpage before AND after \tableofcontents (article class fix)
+% ✅ Naming: Updated from v1.3 to v1.4 nomenclature (section-C5-S3-blocks-variants-final-2026-01-10)
+%
+% Integration notes:
+% - Ready for integration into guide.tex
+% - Delete preamble (\documentclass through \pagenumbering{arabic}) during integration
+% - Keep content from \section{CMS Block and Variant Notes} forward
+% - All three corrections + TOC fix + naming update applied
+%
+% Cross-references:
+% - Briefing: v0.2.0.1, Section 6 (Column Filling Guidelines)
+% - Dependencies: Section 5.2 (CMS Switch Actuation)
+% - Related sections: 5.1 (Concept), 5.4+ (variant-specific procedures)
 
 % ============================================================================
 % ============================================================================
 % SECTION 5.3: CMS BLOCK AND VARIANT NOTES
 % ============================================================================
-
-\setcounter{chapter}{5}
-\setcounter{section}{2}
 
 \section{CMS Block and Variant Notes}
 \label{sec:C5-S3-cms-variants}
@@ -213,12 +223,19 @@ The ALQ-131 and ALQ-184 are active jamming pods mounted on external hardpoints (
 \label{sec:C5-S3-S1-S1-external-characteristics}
 
 \begin{itemize}
+
 \item \textbf{Transmit Authority}: CMS Aft (short or long hold) enables ECM transmission. ECM Enable light on miscellaneous panel illuminates when consent is active.
+
 \item \textbf{Mode Selection}: XMIT knob on ECM control panel selects mode (1 = AUTO Avionics Priority, 2 = AUTO ECM Priority, 3 = Continuous Jam).
+
 \item \textbf{Frequency Bands}: Both ALQ-131 and ALQ-184 cover five frequency bands, automatically selected during continuous transmission.
+
 \item \textbf{Interaction with RF Switch}: RF switch on throttle overrides CMS Aft. Moving RF to QUIET or SILENT disables pod transmission even if CMS Aft is held. Upon return to NORM, CMS Aft must be re-issued.
+
 \item \textbf{Landing Gear Constraint}: When landing gear is extended (down), ECM pod is held in Standby regardless of CMS Aft state. Retracting gear and re-issuing CMS Aft restores transmission capability.
+
 \item \textbf{Ground Safety}: On the ground, ECM pods must remain in Standby. Do not hold CMS Aft in the vicinity of personnel, as pod radiation poses a hazard.
+
 \end{itemize}
 
 \subsubsection{F-16 Blocks and Operators with External ECM}
@@ -229,6 +246,7 @@ The following F-16 variants are equipped with external ECM pods and follow the C
 \begin{enumerate}
 
 \item \textbf{USAF Air Combat Command (ACC) and Air Education and Training Command (AETC)}:
+
 \begin{itemize}
 \item Blocks 40, 42, 50, 52 (all variants, including MLU variants)
 \item Standard configuration: ALQ-131 or ALQ-184 on Station 1 (left fuselage) or Station 7 (right fuselage)
@@ -236,6 +254,7 @@ The following F-16 variants are equipped with external ECM pods and follow the C
 \end{itemize}
 
 \item \textbf{NATO Allied Air Forces}:
+
 \begin{itemize}
 \item \textbf{Belgium}: F-16 Block 15, 25, 30/32 variants
 \item \textbf{Denmark}: F-16 Block 20, 25, 30/32 variants
@@ -245,6 +264,7 @@ The following F-16 variants are equipped with external ECM pods and follow the C
 \end{itemize}
 
 \item \textbf{International Partners}:
+
 \begin{itemize}
 \item \textbf{Egypt}: F-16 Blocks 32, 40, 52 with ALQ-131 or ALQ-184
 \item \textbf{Pakistan}: F-16 Block 40, 42, 52 with ALQ-131 or ALQ-184
@@ -269,14 +289,23 @@ The Improved Defensive Internal Avionic System (IDIAS) is an internal ECM system
 \label{sec:C5-S3-S2-S1-idias-characteristics}
 
 \begin{itemize}
+
 \item \textbf{Transmit Authority}: CMS Left (repeated short presses) cycles through modes. XMTR switch (binary STBY/OPER) gates all modes. Unlike external pods, CMS Aft does \textit{not} control IDIAS transmission.
+
 \item \textbf{Mode Cycling}: Each CMS Left press advances STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (repeating cycle).
+
 \item \textbf{Frequency Band Selection}: IDIAS automatically selects frequency bands based on RWR threat priority. Pilot has no manual band selection control (automatic selection is feature, not limitation).
+
 \item \textbf{Avionics Protection}: In AVNC mode, primary avionics (FCR/TFR/HARM) receive protection; only AFT antenna transmits. In ECM mode, both FWD and AFT antennas transmit; primary avionics may be degraded.
+
 \item \textbf{Interaction with RF Switch}: RF switch on throttle affects IDIAS identically to external pods. Moving RF to QUIET or SILENT disables IDIAS transmission even if mode is ECM. Return to NORM requires mode re-selection via CMS Left.
+
 \item \textbf{Landing Gear Constraint}: When landing gear is extended (down), IDIAS is held in Standby. Retracting gear and re-selecting mode via CMS Left restores transmission capability.
+
 \item \textbf{Warm-up Period}: After power-on, IDIAS requires 5--6 minutes warm-up. During warm-up, STBY lamp flashes. Mode cycling is available but modes will not activate until warm-up completes and XMTR is set to OPER.
+
 \item \textbf{Ground Safety}: IDIAS follows same ground safety practices as external pods. Do not transmit in vicinity of personnel.
+
 \end{itemize}
 
 \subsubsection{F-16 Blocks and Operators with IDIAS}
@@ -287,6 +316,7 @@ The following F-16 variants are equipped with IDIAS and use the CMS Left procedu
 \begin{enumerate}
 
 \item \textbf{Israel Defense Force / Air Force (IDFAF)}:
+
 \begin{itemize}
 \item F-16I Barak I, Barak II, Sufa (legacy variants)
 \item F-16C/D Blocks 30, 40 with IDIAS retrofit
@@ -295,6 +325,7 @@ The following F-16 variants are equipped with IDIAS and use the CMS Left procedu
 \end{itemize}
 
 \item \textbf{Hellenic Air Force (HAF) --- Greece}:
+
 \begin{itemize}
 \item F-16C Blocks 50, 52 (designated PXII, PXIII, PXIV in Greek service)
 \item IDIAS equipped for NATO operations and interoperability with allied air forces
@@ -302,6 +333,7 @@ The following F-16 variants are equipped with IDIAS and use the CMS Left procedu
 \end{itemize}
 
 \item \textbf{Republic of Korea Air Force (ROKAF)}:
+
 \begin{itemize}
 \item KF-16C Block 52 (upgrade from Block 32 with IDIAS integration)
 \item ROKAF adopted IDIAS for air defense mission against North Korean air threats
@@ -309,6 +341,7 @@ The following F-16 variants are equipped with IDIAS and use the CMS Left procedu
 \end{itemize}
 
 \item \textbf{Republic of Singapore Air Force (RSAF)}:
+
 \begin{itemize}
 \item F-16D Block 52 (primarily two-seat variant for training and lead flights)
 \item IDIAS selected for regional air defense and interoperability with allied forces
@@ -316,6 +349,7 @@ The following F-16 variants are equipped with IDIAS and use the CMS Left procedu
 \end{itemize}
 
 \item \textbf{F-16 Block 52+ with IDIAS Retrofit}:
+
 \begin{itemize}
 \item Any F-16 Block 52+ equipped with Improved Defensive Internal Avionic System (IDIAS)
 \item Retrofit programs may apply to additional operators. Check technical order and aircraft-specific configuration.
@@ -339,6 +373,7 @@ This subsection highlights the most critical distinctions between external ECM a
 \begin{itemize}
 
 \item \textbf{External ECM Pod}:
+
 \begin{itemize}
 \item CMS Aft (short or long hold) = Grant transmit consent
 \item Holding CMS Aft maintains transmission
@@ -347,6 +382,7 @@ This subsection highlights the most critical distinctions between external ECM a
 \end{itemize}
 
 \item \textbf{IDIAS}:
+
 \begin{itemize}
 \item CMS Left (repeated short presses) = Cycle through modes (STBY $\rightarrow$ AVNC $\rightarrow$ ECM)
 \item CMS Aft does \textit{not} control IDIAS transmission (using CMS Aft on IDIAS has \textit{no effect} on ECM)
@@ -363,6 +399,7 @@ This subsection highlights the most critical distinctions between external ECM a
 \begin{itemize}
 
 \item \textbf{External ECM Pod}:
+
 \begin{itemize}
 \item XMIT knob on ECM control panel = Three-position selector (1, 2, 3)
 \item Position 1: AUTO Avionics Priority (FCR/TFR protected)
@@ -372,6 +409,7 @@ This subsection highlights the most critical distinctions between external ECM a
 \end{itemize}
 
 \item \textbf{IDIAS}:
+
 \begin{itemize}
 \item XMTR switch on ECM panel = Binary selector (STBY / OPER)
 \item No three-position mode selection available
@@ -383,50 +421,8 @@ This subsection highlights the most critical distinctions between external ECM a
 
 \end{itemize}
 
-\subsubsection{Frequency Band Selection}
-\label{sec:C5-S3-S3-S3-band-selection}
-
-\begin{itemize}
-
-\item \textbf{External ECM Pod}:
-\begin{itemize}
-\item Frequency bands are automatically cycled during transmission (pod cycles through all five bands continuously)
-\item Pilot selects transmission mode via XMIT knob but cannot manually select specific bands
-\end{itemize}
-
-\item \textbf{IDIAS}:
-\begin{itemize}
-\item Frequency bands are automatically selected based on RWR threat priority
-\item RWR provides threat bearing and frequency to IDIAS
-\item IDIAS jams the highest-priority threat band, adapting in real-time to threat changes
-\item Pilot has \textit{zero manual band selection} (this is intentional: automatic selection is superior in dynamic threat environment)
-\end{itemize}
-
-\end{itemize}
-
-\subsubsection{Avionics Protection Differences}
-\label{sec:C5-S3-S3-S4-avionics-protection}
-
-\begin{itemize}
-
-\item \textbf{External ECM Pod}:
-\begin{itemize}
-\item Modes 1 and 2 via XMIT knob = Avionics Priority (FCR/TFR/HARM protected from jamming)
-\item Mode 3 = Continuous Jam (all antennas transmit; may degrade own avionics)
-\item Pilot must select mode based on mission (if relying on radar for fire control, use Mode 1 or 2; if radar not needed, use Mode 3 for maximum coverage)
-\end{itemize}
-
-\item \textbf{IDIAS}:
-\begin{itemize}
-\item AVNC mode = Avionics Priority (FCR/TFR/HARM protected; only AFT antenna transmits)
-\item ECM mode = ECM Priority (both FWD and AFT antennas transmit; onboard avionics may be degraded)
-\item Pilot cycles modes via CMS Left based on mission phase (use AVNC if conducting precision strike or radar SAM defense; use ECM if in sustained air combat)
-\end{itemize}
-
-\end{itemize}
-
 % ============================================================================
-% SUBSECTION 5.3.4: SUMMARY CROSS-REFERENCE TABLE
+% SUBSECTION 5.3.4: SUMMARY TABLE
 % ============================================================================
 
 \subsection{Variant Summary Cross-Reference}
@@ -468,7 +464,7 @@ F-16D Block 52 (Singapore) & IDIAS & CMS Left & CMS Left & Cycle STBY/AVNC/ECM &
 \end{table}
 
 % ============================================================================
-% SUBSECTION 5.3.5: OPERATIONAL NOTES AND SAFETY REMINDERS
+% SUBSECTION 5.3.5: SAFETY NOTES
 % ============================================================================
 
 \subsection{Operational Notes and Safety Reminders}

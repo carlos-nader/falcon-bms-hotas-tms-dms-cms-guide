@@ -1,237 +1,147 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 
 % --------------------------------------------------------------------------
-
 % BASIC ENCODING AND LANGUAGE
-
 % --------------------------------------------------------------------------
 
 \usepackage[utf8]{inputenc}
-
 \usepackage[T1]{fontenc}
-
 \usepackage[english]{babel}
 
 % --------------------------------------------------------------------------
-
 % FONTS AND MICROTYPOGRAPHY
-
 % --------------------------------------------------------------------------
 
 \usepackage{lmodern}
-
 \usepackage{microtype}
 
 % --------------------------------------------------------------------------
-
 % PAGE GEOMETRY AND LAYOUT
-
 % --------------------------------------------------------------------------
 
 \usepackage{geometry}
-
 \geometry{a4paper, left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
-
 \usepackage{setspace}
-
 \onehalfspacing
 
 % --------------------------------------------------------------------------
-
 % COLORS AND LINKS
-
 % --------------------------------------------------------------------------
 
 \usepackage[table]{xcolor}
-
 \definecolor{linkblue}{HTML}{004488}
-
 \definecolor{linkred}{HTML}{882222}
-
 \definecolor{headerblue}{HTML}{003366}
-
 \definecolor{rowgray}{HTML}{F5F5F5}
-
 \definecolor{subheadgray}{HTML}{E0E0E0}
-
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
-
 \usepackage{bookmark}
 
 % --------------------------------------------------------------------------
-
 % HEADERS AND FOOTERS
-
 % --------------------------------------------------------------------------
 
 \usepackage{fancyhdr}
-
 \setlength{\headheight}{15pt}
-
 \pagestyle{fancy}
-
 \fancyhf{}
-
 \fancyhead[L]{\leftmark}
-
 \fancyhead[R]{\rightmark}
-
 \fancyfoot[C]{\thepage}
-
 \renewcommand{\headrulewidth}{0.4pt}
-
 \renewcommand{\footrulewidth}{0pt}
 
 % --------------------------------------------------------------------------
-
 % TABLES AND MACROS
-
 % --------------------------------------------------------------------------
 
 \usepackage{booktabs}
-
 \usepackage{array}
-
 \usepackage{longtable}
-
 \usepackage{tabularx}
 
 % Custom Columns
-
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
-
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
 % Macro for Visual Reference Links
-
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
 % HOTAS table environment
-
-\newenvironment{hotastable}[1][]{%
-
-  \small
-
-  \renewcommand{\arraystretch}{1.25}
-
-  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-
-  \caption{#1}\\
-
-  \rowcolor{headerblue}
-
-  \textbf{\color{white}State} &
-
-  \textbf{\color{white}Dir} &
-
-  \textbf{\color{white}Act} &
-
-  \textbf{\color{white}Function} &
-
-  \textbf{\color{white}Effect / Nuance} &
-
-  \textbf{\color{white}Dash34} &
-
-  \textbf{\color{white}Train} \\
-
-  \endhead
-
-  \rowcolor{headerblue}
-
-  \textbf{\color{white}State} &
-
-  \textbf{\color{white}Dir} &
-
-  \textbf{\color{white}Act} &
-
-  \textbf{\color{white}Function} &
-
-  \textbf{\color{white}Effect / Nuance} &
-
-  \textbf{\color{white}Dash34} &
-
-  \textbf{\color{white}Train} \\
-
-  \endfirsthead
-
-  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-
-  \endfoot
-
-  \endlastfoot
-
+% CORRECTED: [1] instead of [1][] to force caption requirement
+\newenvironment{hotastable}[1]{%
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+\caption{#1}\\
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endhead
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endfirsthead
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\endfoot
+\endlastfoot
 }{%
-
-  \end{longtable}
-
+\end{longtable}
 }
 
 % --------------------------------------------------------------------------
-
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
+% --------------------------------------------------------------------------
+% CORRECTED: Changed from \newcommand to \providecommand to enable WIP file integration
+% CORRECTED: Formatted with \S symbol per Briefing v0.2.0.1, Section 11.3
+
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 
 % --------------------------------------------------------------------------
-
-\newcommand{\dashref}[1]{Dash-34, section~#1}
-
-\newcommand{\dashone}[1]{Dash-1, section~#1}
-
-\newcommand{\trnref}[1]{BMS Training Mission~#1}
-
-\newcommand{\trnman}{BMS Training Manual 4.38.1}
-
-\newcommand{\bmsver}{Falcon BMS~4.38.1}
-
-\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
-
-% --------------------------------------------------------------------------
-
 % VERSION CONTROL MACROS
-
 % --------------------------------------------------------------------------
 
 \newcommand{\docversion}{0.2.2.0}
-
-\newcommand{\docbuild}{20260108}
-
+\newcommand{\docbuild}{20260110}
 \newcommand{\docstartdate}{05 January 2026}
-
 \newcommand{\docenddate}{DD MMM 2026}
-
 \newcommand{\chapterscompletedof}{2/7}
-
 \newcommand{\tablesfilledpct}{0\%}
-
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
-
 % GRAPHICS
-
 % --------------------------------------------------------------------------
 
 \usepackage{graphicx}
-
 \graphicspath{{fig/}}
 
 % --------------------------------------------------------------------------
-
 % TITLE
-
 % --------------------------------------------------------------------------
 
 \title{TMS, DMS and CMS Usage Guide for \bmsver}
-
 \author{Carlos ``Metal'' Nader}
-
 \date{Version \fulldocversion{} | Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct{} | January 2026}
 
 % --------------------------------------------------------------------------
-
 % DOCUMENT
-
 % --------------------------------------------------------------------------
 
 \begin{document}
@@ -240,19 +150,19 @@
 
 \pagenumbering{roman}
 
+\newpage
+
 \tableofcontents
 
-\clearpage
+\newpage
 
 \pagenumbering{arabic}
 
 % --------------------------------------------------------------------------
-
 % CHAPTER 1: INTRODUCTION
-
 % --------------------------------------------------------------------------
 
-\chapter{Introduction}
+\section{Introduction}
 
 This document is a community-made reference guide for \bmsver, focused on practical use of three specific HOTAS controls: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although this guide was developed under Falcon BMS 4.38.1, the fundamental behavior of these switches has remained constant since at least Falcon BMS 4.36, making this guide applicable to almost any player of Falcon BMS.
 
@@ -264,57 +174,37 @@ This is the \emph{TMS, DMS and CMS Usage Guide---Version \fulldocversion}, prepa
 
 This work is entirely unofficial. The author is not affiliated with Benchmark Sims, MicroProse, any real-world air force, or any aircraft or weapons manufacturer. All interpretations, simplifications, errors and omissions in this document are solely the responsibility of the author and must not be attributed to the Falcon BMS development team or to any real-world organization.\footnote{Compare the official disclaimer and copyright statements in the foreword of \trnman{}.} Nothing in this document should ever be used for real-world operations, training, or procedures.
 
-Readers are explicitly permitted to copy, share, translate, and modify this document for non-commercial use within the Falcon BMS community, as long as proper credit is given to the original author and no derivative work claims any official status. You are encouraged to extend it with additional aircraft, weapons, examples, or national variants, or to correct any mistakes you may find, so that the community benefits from continuous improvement. The structure of the document mirrors the way BMS itself presents the jet: it starts with general HOTAS concepts (TMS, DMS, CMS and related switches), then covers Air-to-Air radar and IFF usage, followed by Air-to-Ground sensors and SPI logic, and finally weapon-specific employment (Maverick, IAMs, LGBs, HARM, Harpoon, SPICE and others), with variant notes for different F-16 blocks and export models.\footnote{See the organization of \dashref{2} and the weapon employment sections of \trnman{}.} Each section includes cross-references to the relevant chapters of the official BMS manuals and, where applicable, to specific BMS training missions that let you practice the techniques described.\footnote{Training missions and their learning objectives are listed in the table of contents of \trnman{}.}
-
 % --------------------------------------------------------------------------
-
 % SECTION 1.1: DEVELOPMENT TIMELINE
-
 % --------------------------------------------------------------------------
 
-\section{Development timeline and status}
+\subsection{Development timeline and status}
 
 This guide was developed in structured phases, beginning \docstartdate{}. Current development status and targets are shown in Table~\ref{tab:dev_status} below.
 
 \begin{table}[h]
-
 \centering
-
 \begin{tabular}{L{3.2cm} L{2.5cm} L{2.5cm}}
-
 \toprule
-
 \textbf{Metric} & \textbf{Current} & \textbf{Target} \\
-
 \midrule
-
 Start Date & \docstartdate & --- \\
-
 Current Version & \fulldocversion & --- \\
-
 Chapters Complete & \chapterscompletedof & 7/7 \\
-
 Tables Filled & \tablesfilledpct & 100\% \\
-
 \bottomrule
-
 \end{tabular}
-
 \caption{Development Status Snapshot}
-
 \label{tab:dev_status}
-
 \end{table}
 
 The development roadmap is structured in three phases: (1) \emph{Chapter scaffolding} (Versions 0.1.0--0.7.0), during which all chapters receive narrative content and table structures; (2) \emph{Table population} (Versions 1.0.0--1.0.5), during which all tables are filled with complete HOTAS behavior descriptions and diagrams are generated; and (3) \emph{Review and release} (Versions 2.0.0-RC1 through 2.0.0-Stable), during which content is reviewed for accuracy, consistency, and clarity. Each phase produces a versioned PDF artifact, and all versions are archived for traceability.
 
 % --------------------------------------------------------------------------
-
 % SECTION 1.2: SCOPE AND PURPOSE
-
 % --------------------------------------------------------------------------
 
-\section{Scope and purpose}
+\subsection{Scope and purpose}
 
 This guide focuses exclusively on three HOTAS switches: the Target Management Switch (TMS), the Display Management Switch (DMS), and the Countermeasures Management Switch (CMS). Although other controls exist on the F-16 throttle and stick---such as the Communication Switch, the Dogfight/MRM Override, and the RDR Cursor Enable control---they are mentioned only when essential to understanding the behavior and context of TMS, DMS, and CMS.
 
@@ -323,12 +213,10 @@ This is not a comprehensive HOTAS or avionics manual. Instead, it is a usage gui
 The guide assumes knowledge of basic F-16 operation and familiarity with master modes (NAV, A-A, A-G, DGFT). It does not replace the Dash-34 or Training Manual; rather, it complements them by organizing TMS/DMS/CMS behavior into searchable tables with cross-references back to official sources and practical training missions where each behavior can be practiced.
 
 % --------------------------------------------------------------------------
-
 % SECTION 1.3: VERSION, AUTHORSHIP AND AI ASSISTANCE
-
 % --------------------------------------------------------------------------
 
-\section{Version, authorship and AI assistance}
+\subsection{Version, authorship and AI assistance}
 
 \textbf{Document Version:} \fulldocversion{} (Progress: Chapters \chapterscompletedof{} | Tables \tablesfilledpct)
 
@@ -336,15 +224,15 @@ The guide assumes knowledge of basic F-16 operation and familiarity with master 
 
 \textbf{Authorship:} This guide was created by a member of the Falcon BMS community with structured assistance from AI language models (Perplexity AI). The human author identified scope, validated content against official Falcon BMS documentation, made all organizational and editorial decisions, and bears full responsibility for the guide's accuracy and presentation. AI tools were used for research organization, cross-referencing, and text generation---not for defining technical correctness.
 
-\textbf{Disclaimer:} This is an unofficial, community-made document not affiliated with, endorsed by, or affiliated with Benchmark Sims, MicroProse, any military organization, or any aircraft or weapons manufacturer. All technical content is paraphrased in original words from official BMS documentation. No copyrighted material is reproduced directly. The guide is provided ``as-is'' for educational and simulation training purposes only. \textbf{Copyright \& Sharing:} This guide may be freely copied, printed, translated, and shared within the Falcon BMS community for non-commercial use. Derivative works and contributions are encouraged, provided that proper credit is given to the original author and no derivative version claims official status.
+\textbf{Disclaimer:} This is an unofficial, community-made document not affiliated with, endorsed by, or affiliated with Benchmark Sims, MicroProse, any military organization, or any aircraft or weapons manufacturer. All technical content is paraphrased in original words from official BMS documentation. No copyrighted material is reproduced directly. The guide is provided ``as-is'' for educational and simulation training purposes only.
+
+\textbf{Copyright \& Sharing:} This guide may be freely copied, printed, translated, and shared within the Falcon BMS community for non-commercial use. Derivative works and contributions are encouraged, provided that proper credit is given to the original author and no derivative version claims official status.
 
 % --------------------------------------------------------------------------
-
 % SECTION 1.4: SOURCES AND REFERENCES
-
 % --------------------------------------------------------------------------
 
-\section{Sources and references}
+\subsection{Sources and references}
 
 This guide is based on the following primary Falcon BMS documents consulted during research and development:
 
@@ -353,59 +241,42 @@ This guide is based on the following primary Falcon BMS documents consulted duri
 \item \textbf{TO BMS 1F-16CMAM-34-1-1} (Dash-34, Change 4.38) -- Avionics and Nonnuclear Weapons Delivery Flight Manual
 
 \begin{itemize}
-
 \item Sections 2.1.5 (HOTAS Hands-On Controls)
-
 \item Sections 2.3.1 (AN\-APG-68V5 Fire Control Radar)
-
 \item Section 2.7 (Defensive Avionics -- CMS, ECM, CMDS)
-
 \item Weapon-specific chapters (HARM, Maverick, IAMs, LGBs, Harpoon, SPICE, etc.)
-
 \end{itemize}
 
 \item \textbf{BMS Training Manual 4.38.1} (October 2025) -- Training missions and learning objectives
 
 \begin{itemize}
-
 \item Individual mission descriptions (TRN 11--28, with emphasis on weapons employment and avionics training)
-
 \item Mission learning objectives and practical procedures
-
 \end{itemize}
 
 \item \textbf{TO BMS 1F-16CMAM-1} (Dash-1) -- F-16 Aircraft Systems, Normal and Abnormal Procedures
 
 \begin{itemize}
-
 \item Referenced for overall aircraft context and system interactions
-
 \end{itemize}
 
 \item \textbf{BMS User Manual 4.38} -- BMS user interface and setup
 
 \begin{itemize}
-
 \item Referenced for MFD, ICP, and UFC control information
-
 \end{itemize}
 
 \item \textbf{MCH 11-F16 Vol 5} (May 1996) -- F-16 Flight Manual Vol 5 (Surface Attack and Weapons Delivery)
 
 \begin{itemize}
-
 \item Referenced for operational context and ordnance procedures
-
 \end{itemize}
 
 \item \textbf{Falcon BMS Cockpit Arrangement Diagrams} (Multiple blocks)
 
 \begin{itemize}
-
 \item F-16C Block 50/52, Block 40/42, Block 30/32, F-16A MLU variants
-
 \item Visual reference for HOTAS switch positions across variants
-
 \end{itemize}
 
 \end{enumerate}
@@ -413,297 +284,272 @@ This guide is based on the following primary Falcon BMS documents consulted duri
 \emph{Note:} This reference list will be updated throughout the development of the guide as new sources are consulted. Always refer to the most current version of this document to see the complete list of references.
 
 % --------------------------------------------------------------------------
-
 % SECTION 1.5: DOCUMENT STRUCTURE AND HOW TO READ IT
-
 % --------------------------------------------------------------------------
 
-\section{Document structure and how to read it}
+\subsection{Document structure and how to read it}
 
-\subsection{Part A: Foundational Chapters (2--3)}
+\subsubsection{Part A: Foundational Sections}
 
-Chapter~2 establishes core HOTAS concepts: Sensor of Interest (SOI), short vs. long press timing, master modes, and an overview of TMS/DMS/CMS roles. Read this first if you are new to the F-16 or HOTAS in general.
+Foundational sections establish core HOTAS concepts: Sensor of Interest (SOI), short vs. long press timing, master modes, and an overview of TMS/DMS/CMS roles. Read this first if you are new to the F-16 or HOTAS in general.
 
-\subsection{Part B: Switch-Specific Chapters (3--5)}
+\subsubsection{Part B: Switch-Specific Sections}
 
-Chapters~3, 4, and 5 each focus on one switch and contain detailed tables using the \texttt{hotastable} environment.
+Sections focused on TMS, DMS, and CMS each contain detailed tables using the \texttt{hotastable} environment.
 
-\subsubsection{Table structure}
+\textbf{Table structure:}
 
 Each table follows a seven-column format:
 
 \begin{center}
-
 \begin{tabular}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-
 \toprule
-
 \textbf{State} & \textbf{Dir} & \textbf{Act} & \textbf{Function} & \textbf{Effect / Nuance} & \textbf{Dash34} & \textbf{Train} \\
-
 \midrule
-
 Condition & Up & Shrt & Name & Explanation & Ref & TRN \\
-
 \bottomrule
-
 \end{tabular}
-
 \end{center}
 
-\subsubsection{How to find information}
+\textbf{How to find information:}
 
 \begin{enumerate}
-
 \item Identify the \textbf{master mode and sensor/weapon context} from the section title (e.g., ``TMS in Air-to-Air -- FCR CRM'').
-
 \item Find the \textbf{State} within the table (e.g., ``Search'' vs. ``STT'').
-
 \item Determine the \textbf{Direction} and \textbf{Action} (Short/Long).
-
 \item Read the \textbf{Effect} and check the \textbf{Dash34} or \textbf{Training} reference.
-
 \end{enumerate}
 
-\subsection{Part C: Training and Visual Reference (Chapters 6--7)}
+\subsubsection{Part C: Training and Visual Reference}
 
-\textbf{Chapter~6} links this guide to the 33 BMS training missions, offering a recommended progression and example tactical flows. Use this chapter to plan your training sequence.
+Training reference section links this guide to the 33 BMS training missions, offering a recommended progression and example tactical flows. Use this section to plan your training sequence.
 
-\textbf{Chapter~7} provides schematic diagrams of the TMS, DMS, and CMS hats with arrows and short labels for each direction in common contexts. These are quick-reference visuals; always consult the tables for complete behavior descriptions.
+Visual reference section provides schematic diagrams of the TMS, DMS, and CMS hats with arrows and short labels for each direction in common contexts. These are quick-reference visuals; always consult the tables for complete behavior descriptions.
 
-\subsection{Part D: Appendices}
+\subsubsection{Part D: Appendices}
 
-\textbf{Appendix~A} notes any differences in TMS/DMS/CMS behavior across F-16 blocks and variants (e.g., Block 50/52 vs. Block 40/42).
-
-\textbf{Appendix~B} provides a comprehensive index of all major tables and their locations.
+Appendices note any differences in TMS/DMS/CMS behavior across F-16 blocks and variants (e.g., Block 50/52 vs. Block 40/42), and provide a comprehensive index of all major tables and their locations.
 
 % --------------------------------------------------------------------------
-
-% CHAPTER 2: HOTAS FUNDAMENTALS
-
+% SECTION 2: HOTAS FUNDAMENTALS (PLACEHOLDER)
 % --------------------------------------------------------------------------
 
-\chapter{HOTAS fundamentals}
+\section{HOTAS fundamentals}
 
-\section{Sensor of Interest (SOI) and display logic}
+\subsection{Sensor of Interest (SOI) and display logic}
 
-\section{Short vs long presses and timing}
+[Content to be developed in next phase]
 
-\section{Master modes and context-sensitive behaviour}
+\subsection{Short vs long presses and timing}
 
-\section{Overview of TMS, DMS and CMS}
+[Content to be developed in next phase]
 
-% --------------------------------------------------------------------------
+\subsection{Master modes and context-sensitive behaviour}
 
-% CHAPTER 3: TMS
+[Content to be developed in next phase]
 
-% --------------------------------------------------------------------------
+\subsection{Overview of TMS, DMS and CMS}
 
-\chapter{TMS -- Target Management Switch}
-
-\section{Concept and general behaviour}
-
-\section{TMS and Situational Awareness displays}
-
-\subsection{HSD: Cursor control and waypoint management}
-
-\subsection{Integration with NAV master mode}
-
-\subsection{Cross-mode SA display interaction}
-
-\section{TMS in Air-to-Air}
-
-\subsection{FCR CRM (RWS / ULS / VSR)}
-
-\subsection{SAM / DT-SAM}
-
-\subsection{TWS}
-
-\subsection{STT}
-
-\subsection{ACM (30x20, 10x60, BORE, SLEW)}
-
-\subsection{IFF interrogations (SCAN / LOS)}
-
-\section{TMS in Air-to-Ground -- sensors and SPI}
-
-\subsection{FCR A-G (GM / GMT / SEA / AGR)}
-
-\subsection{TGP A-G}
-
-\subsection{HUD / HMCS (SPI, Snowplow, CZ, VIP/VRP cues)}
-
-\subsection{Markpoints and steerpoint management}
-
-\section{TMS in A-G weapon employment}
-
-\subsection{Unguided bombs and rockets (CCIP / CCRP / DTOS)}
-
-\subsection{EO weapons -- Maverick (VIS / PRE / BORE)}
-
-\subsection{IAMs (JDAM / JSOW / WCMD / SPICE / others)}
-
-\subsection{LGBs and laser employment}
-
-\subsection{Anti-radiation (HARM POS / HAS / HAD)}
-
-\subsection{Naval weapons (Harpoon, others)}
-
-\section{TMS -- Block / variant notes}
+[Content to be developed in next phase]
 
 % --------------------------------------------------------------------------
-
-% CHAPTER 4: DMS
-
+% SECTION 3: TMS (PLACEHOLDER)
 % --------------------------------------------------------------------------
 
-\chapter{DMS -- Display Management Switch}
+\section{TMS -- Target Management Switch}
 
-\section{Concept and Sensor of Interest (SOI)}
+\subsection{Concept and general behaviour}
 
-\subsection{SOI definition and scope across displays}
+[Content to be developed in next phase]
 
-\subsection{Role of the DMS in SOI selection}
+\subsection{TMS and Situational Awareness displays}
 
-\subsection{Example SOI flow (overview)}
+[Content to be developed in next phase]
 
-\section{DMS in MFDS format selection and SWAP}
+\subsection{TMS in Air-to-Air}
 
-\subsection{MFDS format selection and cycling}
+[Content to be developed in next phase]
 
-\subsection{SWAP and display management}
+\subsection{TMS in Air-to-Ground}
 
-\subsection{HSD control via SOI and MFDS functions}
+[Content to be developed in next phase]
 
-\section{DMS in sensor and weapon context}
+\subsection{TMS in weapon employment}
 
-\subsection{SOI changes between FCR, TGP, HSD and HUD in Air-to-Air}
+[Content to be developed in next phase]
 
-\subsection{SOI changes between FCR, TGP, HSD, HAD and WPN in Air-to-Ground}
+\subsection{TMS -- Block / variant notes}
 
-\subsection{DMS with HARM -- HAD page as SOI}
-
-\subsection{DMS with IAMs and other weapon-driven MFDS pages (SMS/WPN)}
-
-\section{DMS -- Block / variant notes}
+[Content to be developed in next phase]
 
 % --------------------------------------------------------------------------
-
-% CHAPTER 5: CMS --- INTEGRATED SECTION 5.1
-
+% SECTION 4: DMS (PLACEHOLDER)
 % --------------------------------------------------------------------------
 
-\chapter{CMS -- Countermeasures Management Switch}
+\section{DMS -- Display Management Switch}
 
-\section{Concept and Interaction with CMDS / ECM / RWR}
+\subsection{Concept and Sensor of Interest (SOI)}
 
-\subsection{Concept}
+[Content to be developed in next phase]
 
-\label{sec:cms_concept}
+\subsection{DMS in MFDS format selection and SWAP}
+
+[Content to be developed in next phase]
+
+\subsection{DMS in sensor and weapon context}
+
+[Content to be developed in next phase]
+
+\subsection{DMS -- Block and variant notes}
+
+[Content to be developed in next phase]
+
+% --------------------------------------------------------------------------
+% SECTION 5: CMS (PLACEHOLDER)
+% --------------------------------------------------------------------------
+
+\section{CMS -- Countermeasures Management Switch}
+
+\subsection{Concept and Interaction with CMDS / ECM / RWR}
+
+\subsubsection{Concept}
 
 The Countermeasures Management Switch (CMS) is a four-direction hat switch mounted on the control stick that serves as the pilot's primary control interface to the F-16's integrated electronic warfare (EW) defensive systems: the ALE-47 CMDS (automatic chaff/flare dispenser), ECM systems (external pods or internal avionics), and avionics-based threat defeat systems. The CMS supervises the aircraft's defensive response by controlling defensive program selection, managing ECM operational modes, and granting or withholding consent authority to all defensive subsystems.
 
-Its role is to grant the pilot rapid tactical control over the aircraft's defensive posture. This control is operationally critical because defensive decisions frequently occur during high-G maneuvering when hand position cannot be redirected to distant cockpit panels. A pilot executing a 6-G defensive turn cannot simultaneously reach the CMDS MODE knob on the left console or the ECM control panel without abandoning aircraft control. By placing the CMS within thumb reach during full-stick maneuver, the design ensures that no tactical scenario---regardless of G-load or workload---forces the pilot to choose between aircraft control and defensive system authority. This design philosophy prioritizes pilot sovereignty: direct access to defensive control is never sacrificed for maneuvering demand.
+Its role is to grant the pilot rapid tactical control over the aircraft's defensive posture. This control is operationally critical because defensive decisions frequently occur during high-G maneuvering when hand position cannot be redirected to distant cockpit panels. A pilot executing a 6-G defensive turn cannot simultaneously reach the CMDS MODE knob on the left console or the ECM control panel without abandoning aircraft control. By placing the CMS within thumb reach during full-stick maneuver, the design ensures that no tactical scenario regardless of G-load or workload forces the pilot to choose between aircraft control and defensive system authority. This design philosophy prioritizes pilot sovereignty: direct access to defensive control is never sacrificed for maneuvering demand.
 
-RWR, although not directly linked to CMS, is more than a display device: it is the \textit{decision engine} for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classifies them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
+RWR, although not directly linked to CMS, is more than a display device: it is the decision engine for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classi es them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
 
-For in-depth explanations about CMDS, ECM and RWR operation, see \dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface.
+For in-depth explanations about CMDS, ECM and RWR operation, see 
+\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface.
 
-\subsection{Interaction with CMDS / ECM}
+\subsubsection{Interaction with CMDS / ECM}
 
 Operationally, the CMS manages two distinct defensive layers: CMDS and ECM (in its both configurations: internal avionics or external pod). All CMS button pressings will be detailed in the next section.
 
-Differences in F-16 Blocks or variants, especially regarding ECM, will be discussed in Section~\ref{sec:cms_variants}.
+Differences in F-16 Blocks or variants, especially regarding ECM, will be discussed in \hyperlink{section 5.3}{Section 5.3}.
 
 \begin{enumerate}
 
-\item \textbf{ECM (External Pod):} Controls the external ECM pod's operational state through pilot-directed transmission modes and consent authority.
+\item \textbf{ECM (External Pod):} Controls the external ECM pod's 
+operational state through pilot-directed transmission modes 
+and consent authority.
 
-\item \textbf{ECM (Integrated IDIAS):} Controls the integrated ECM system through automatic threat-reactive modes.
+\item \textbf{ECM (Integrated IDIAS):} Controls the integrated ECM 
+system through automatic threat-reactive modes.
 
-\item \textbf{CMDS in Manual Mode:} Allows the pilot to execute pre-selected dispenser programs on demand, independent of automatic systems.
+\item \textbf{CMDS in Manual Mode:} Allows the pilot to execute 
+pre-selected dispenser programs on demand, independent of 
+automatic systems.
 
-\item \textbf{CMDS in Automatic/Semi-Automatic Modes:} Authorizes the ALE-47 CMDS to respond autonomously to RWR-detected threats when operating in AUTO or SEMI mode.
+\item \textbf{CMDS in Automatic/Semi-Automatic Modes:} Authorizes 
+the ALE-47 CMDS to respond autonomously to RWR-detected threats 
+when operating in AUTO or SEMI mode.
 
 \end{enumerate}
 
-\section{CMS Switch Actuation}
+\subsection{CMS Switch Actuation}
 
-\label{sec:cms_actuation}
+\subsubsection{CMS Actuation with CMDS}
 
-\emph{[Content to be developed in next phase]}
+[Content to be developed in next phase]
 
-\subsection{CMS Actuation with CMDS}
+\subsubsection{CMS Actuation with ECM}
 
-\subsection{CMS Actuation with ECM}
+[Content to be developed in next phase]
 
-\subsection{CMS Consent \& Constraints}
+\subsubsection{CMS Consent \& Constraints}
 
-\subsection{Important Operational Notes}
+[Content to be developed in next phase]
 
-\section{CMS -- Block and variant notes}
+\subsubsection{Important Operational Notes}
 
-\label{sec:cms_variants}
+[Content to be developed in next phase]
 
-\emph{[Content to be developed in next phase]}
+\subsection{CMS -- Block and variant notes}
 
-% --------------------------------------------------------------------------
-
-% CHAPTER 6: TRAINING REFERENCES AND FLOWS
+[Content to be developed in next phase]
 
 % --------------------------------------------------------------------------
-
-\chapter{Training references and practical flows}
-
-\section{How to use this guide with BMS training missions}
-
-\section{Recommended progression}
-
-\section{Example flows for typical missions}
-
-\section{Checklist: what to practice next}
-
+% SECTION 6: TRAINING REFERENCES (PLACEHOLDER)
 % --------------------------------------------------------------------------
 
-% CHAPTER 7: HOTAS VISUAL REFERENCE
+\section{Training references and practical flows}
+
+\subsection{How to use this guide with BMS training missions}
+
+[Content to be developed in next phase]
+
+\subsection{Recommended progression}
+
+[Content to be developed in next phase]
+
+\subsection{Example flows for typical missions}
+
+[Content to be developed in next phase]
 
 % --------------------------------------------------------------------------
-
-\chapter{HOTAS visual reference}
-
-\section{F-16 HOTAS overview}
-
-\section{TMS diagrams}
-
-\section{DMS diagrams}
-
-\section{CMS diagrams}
-
+% SECTION 7: VISUAL REFERENCE (PLACEHOLDER)
 % --------------------------------------------------------------------------
 
+\section{HOTAS visual reference}
+
+\subsection{F-16 HOTAS overview}
+
+[Content to be developed in next phase]
+
+\subsection{TMS diagrams}
+
+[Content to be developed in next phase]
+
+\subsection{DMS diagrams}
+
+[Content to be developed in next phase]
+
+\subsection{CMS diagrams}
+
+[Content to be developed in next phase]
+
+% --------------------------------------------------------------------------
 % APPENDICES
-
 % --------------------------------------------------------------------------
 
 \appendix
 
-\chapter{Block / variant overview}
+\section{Block / variant overview}
 
-\section{F-16CM Block 50/52}
+\subsection{F-16CM Block 50/52}
 
-\section{F-16C/D Block 40/42}
+[Content to be developed in next phase]
 
-\section{F-16AM/BM MLU}
+\subsection{F-16C/D Block 40/42}
 
-\section{F-16I Sufa and Israeli variants}
+[Content to be developed in next phase]
 
-\section{Other export variants}
+\subsection{F-16AM/BM MLU}
 
-\chapter{Tables index}
+[Content to be developed in next phase]
 
-\section{TMS tables}
+\subsection{F-16I Sufa and Israeli variants}
 
-\section{DMS tables}
+[Content to be developed in next phase]
 
-\section{CMS tables}
+\subsection{Other export variants}
+
+[Content to be developed in next phase]
+
+\section{Tables index}
+
+\subsection{TMS tables}
+
+[To be populated]
+
+\subsection{DMS tables}
+
+[To be populated]
+
+\subsection{CMS tables}
+
+[To be populated]
 
 \end{document}

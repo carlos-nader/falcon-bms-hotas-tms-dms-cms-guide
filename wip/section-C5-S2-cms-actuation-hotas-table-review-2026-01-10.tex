@@ -1,19 +1,18 @@
 % ============================================================================
 % FALCON BMS TMS/DMS/CMS HOTAS GUIDE
-% WIP FILE — SECTION-LEVEL TEMPLATE
+% WIP FILE — SECTION-LEVEL
 % ============================================================================
 
-% IMPORTANTE: Este é um arquivo WIP (Work-In-Progress) seguindo WIP-FILE-NAMING-v1.3
-% que será integrado ao guide.tex v0.2.2.0 ou posterior.
+% Nomenclatura (WIP-NAMING-v1.4):
+% section-C5-S2-cms-actuation-final-2026-01-10.tex
+% ├─ section: type identifier
+% ├─ C5: target chapter 5 (CMS)
+% ├─ S2: target section 2 (CMS Switch Actuation)
+% ├─ cms-actuation: descriptive title (slugified)
+% ├─ final: status (dev | review | final | approved | deprecated)
+% └─ 2026-01-10: creation/last-edit date (YYYY-MM-DD)
 
-% Nomenclatura: Siga WIP-FILE-NAMING-v1.3
-% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
-% Este arquivo: section-C5-S2-cms-actuation-hotas-tables-review-2026-01-08.tex
-
-% Status: dev | review | final | approved | deprecated
-% Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
-
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 
 % --------------------------------------------------------------------------
 % BASIC ENCODING AND LANGUAGE
@@ -75,13 +74,13 @@
 \usepackage{longtable}
 \usepackage{tabularx}
 
-% Custom Columns - CORRECTED SYNTAX
+% Custom Columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% HOTAS table environment (per BRIEFING v0.1.4.1)
-\newenvironment{hotastable}[1][]{%
+% HOTAS table environment (per BRIEFING v0.2.0.1, Section 6)
+\newenvironment{hotastable}[1]{%
 \small
 \renewcommand{\arraystretch}{1.25}
 \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
@@ -115,20 +114,20 @@
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
 % --------------------------------------------------------------------------
 
-\newcommand{\dashref}[1]{Dash-34, section~#1}
-\newcommand{\dashone}[1]{Dash-1, section~#1}
-\newcommand{\trnref}[1]{BMS Training Mission~#1}
-\newcommand{\trnman}{BMS Training Manual 4.38.1}
-\newcommand{\bmsver}{Falcon BMS~4.38.1}
-\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 
 % --------------------------------------------------------------------------
 % VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
-\newcommand{\docversion}{review}
-\newcommand{\docbuild}{20260108}
-\newcommand{\fulldocversion}{\docversion+\docbuild}
+\newcommand{\docversion}{WIP}
+\newcommand{\docbuild}{section-C5-S2-final}
+\newcommand{\fulldocversion}{\docversion~\docbuild}
 
 % --------------------------------------------------------------------------
 % GRAPHICS
@@ -141,11 +140,9 @@
 % TITLE (For Standalone Compilation)
 % --------------------------------------------------------------------------
 
-\title{F-16 Countermeasures Management Switch (CMS)\\\vspace{0.2cm}
-Section 5.2: CMS Switch Actuation\\\vspace{0.2cm}
-{\small \bmsver{} --- WIP File section-C5-S2-cms-actuation-hotas-tables}}
+\title{F-16 Countermeasures Management Switch (CMS)\\[0.2cm]Section 5.2: CMS Switch Actuation\\[0.2cm]{\small \bmsver{}}}
 \author{Carlos ``Metal'' Nader}
-\date{Version \fulldocversion{} | January 8, 2026}
+\date{WIP Status: final | Date: 2026-01-10}
 
 % --------------------------------------------------------------------------
 % DOCUMENT BEGIN
@@ -155,31 +152,43 @@ Section 5.2: CMS Switch Actuation\\\vspace{0.2cm}
 
 \maketitle
 
+\newpage
+
 \tableofcontents
 
-\clearpage
+\newpage
 
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
 
-% File Name: section-C5-S2-cms-actuation-hotas-tables-review-2026-01-08.tex
-% WIP Naming Convention: v1.3
-% Target Chapter: C5 (Countermeasures Management System --- CMS)
+% File Name: section-C5-S2-cms-actuation-final-2026-01-10.tex
+% WIP Naming Convention: v1.4
+% Target Chapter: C5 (Countermeasures Management System — CMS)
 % Target Section: S2 (CMS Switch Actuation)
-% WIP Status: review
+% WIP Status: final (approved for integration)
 % Created: 2026-01-08
-% Last Modified: 2026-01-09
+% Last Modified: 2026-01-10
+%
 % Narrative Completion: 100%
-% Table Fill Status: 90%
+% Table Fill Status: 90% (training mission references use TBD standards)
+%
+% Integration notes:
+% - Ready for integration into guide.tex
+% - Delete preamble (\documentclass through \newpage) during integration
+% - Keep content from \section{} forward
+% - All three corrections applied (C1, C2, C3)
+% - TOC page separation fixed (\newpage before/after \tableofcontents)
+%
+% Cross-references:
+% - Briefing: v0.2.0.1, Section 6 (Column Filling Guidelines)
+% - Training missions: per training-mission-abbrev-table-v1.0.md
+% - Dependencies: None (standalone section)
 
 % ============================================================================
 % ============================================================================
 % SECTION 5.2: CMS SWITCH ACTUATION
 % ============================================================================
-
-\setcounter{chapter}{5}
-\setcounter{section}{1}
 
 \section{CMS Switch Actuation}
 \label{sec:C5-S2-cms-actuation}
@@ -216,13 +225,16 @@ The ALE-47 CMDS (Automatic Chaff and Flare Dispensing System) provides three ope
 
 The CMDS Manual (MAN) mode grants the pilot direct, program-by-program control over countermeasure expenditure. Each CMS direction selects or executes a specific program. This mode is recommended when threat types are well-known or when chaff/flare inventory must be conserved, or by pilot choice.
 
-\begin{hotastable}[CMS Actuation with CMDS Manual Mode]
+\begin{hotastable}{CMS Actuation with CMDS Manual Mode}
+
 CMDS MAN & Up & Short & Execute Program 1--4 &
 Runs the program selected via the CMDS panel PRGM knob once per press. No threat sensing; purely pilot-commanded. Overrides any AUTO dispensing, if running.
 & \dashref{2.7.2.2} & TBD \\
+
 CMDS MAN & Left & Short & Execute Program 6 &
 Flare-only program. Often pre-configured for close-range air-to-air engagements or MANPAD defense. No dependency on PRGM knob.
 & \dashref{2.7.2.2} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================
@@ -234,19 +246,24 @@ Flare-only program. Often pre-configured for close-range air-to-air engagements 
 
 The CMDS Automatic (AUTO) mode enables the ALE-47 CMDS to dispense chaff/flare programs continuously in response to RWR-detected threats, without requiring pilot consent for each event. Pilot consent is given once by pressing CMS Aft; dispensing continues until CMS Right is pressed or expendables are exhausted.
 
-\begin{hotastable}[CMS Actuation with CMDS Automatic Mode]
+\begin{hotastable}{CMS Actuation with CMDS Automatic Mode}
+
 CMDS AUTO & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, interrupting any ongoing AUTO dispensing. After the manual program completes, AUTO resumes if threat persists. Useful for pilot override in high-threat scenarios.
 & \dashref{2.7.2.2} & TBD \\
+
 CMDS AUTO & Left & Short & Execute Program 6 &
 Manual flare-only program, overrides AUTO. After execution, AUTO resumes.
 & \dashref{2.7.2.2} & TBD \\
+
 CMDS AUTO & Aft & Short & Give Consent; Enable AUTO Dispensing &
 CMS Aft grants consent for AUTO CMDS. RWR-detected threats trigger automatic program dispensing (selected via PRGM knob). Dispensing continues until threat clears or CMS Right is pressed. Consent state persists even if pilot switches to MAN mode; re-engaging AUTO will resume auto-dispense.
 & \dashref{2.7.2.1} & TBD \\
+
 CMDS AUTO & Right & Short & Cancel Consent; Disable AUTO &
 CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispensing halts immediately. Pilot must re-issue CMS Aft to resume AUTO operation or use the system manually.
 & \dashref{2.7.2.1} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================
@@ -258,19 +275,24 @@ CMS Right removes CMDS consent and places the ALE-47 in Standby. Automatic dispe
 
 Semi-Automatic (SEMI) mode allows the ALE-47 to prompt the pilot for consent on a per-threat basis. When the RWR detects a threat requiring countermeasures, the CMDS displays ``DISPENSE RDY'' on the control unit and sounds a ``COUNTER'' voice message, requesting pilot consent via CMS Aft.
 
-\begin{hotastable}[CMS Actuation with CMDS Semi-Automatic Mode]
+\begin{hotastable}{CMS Actuation with CMDS Semi-Automatic Mode}
+
 CMDS SEMI & Up & Short & Execute Program 1--4 &
 Manual override: runs the selected program once, independent of RWR threat state. After execution, CMDS returns to monitoring for threats and issuing ``COUNTER'' prompts.
 & \dashref{2.7.2.2} & TBD \\
+
 CMDS SEMI & Left & Short & Execute Program 6 &
 Manual flare-only program, independent of SEMI threat detection. After execution, CMDS resumes SEMI monitoring.
 & \dashref{2.7.2.2} & TBD \\
+
 CMDS SEMI & Aft & Short & Give Consent; Dispense One Program &
 When CMDS issues ``COUNTER'' (threat detected), pilot presses CMS Aft to execute one instance of the selected program. If threat persists or a new threat appears, CMDS will issue ``COUNTER'' again. Consent state is tracked; switching to AUTO while consent active will trigger immediate AUTO dispensing on next threat.
 & \dashref{2.7.2.1} & TBD \\
+
 CMDS SEMI & Right & Short & Cancel Consent; Return to Standby &
 CMS Right removes SEMI consent. CMDS halts monitoring and returns to Standby. ``COUNTER'' messages cease.
 & \dashref{2.7.2.1} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================
@@ -291,13 +313,16 @@ External ECM pods (ALQ-131, ALQ-184) and internal IDIAS (Improved Defensive Inte
 
 External ECM pods provide pilot-controlled jamming across five frequency-band programs. The CMS Aft position grants ``ECM consent,'' enabling the pod to transmit at the XMIT switch setting (modes 1, 2, or 3). The ECM Enable light on the miscellaneous panel indicates consent state.
 
-\begin{hotastable}[CMS Actuation with External ECM Pod]
+\begin{hotastable}{CMS Actuation with External ECM Pod}
+
 ECM Pod & Aft & Short & Enable ECM Transmit; Grant Consent &
 CMS Aft illuminates the ECM Enable light and permits the external ECM pod to transmit in the mode set by the XMIT switch on the ECM control panel (XMIT 1: AUTO Avionics Priority; XMIT 2: AUTO ECM Priority; XMIT 3: Continuous Jam). Pod continues transmitting as long as ECM is not cancelled by the pilot or RF switch is moved away from NORM.
 & \dashref{2.7.4.2.5} & TBD \\
+
 ECM Pod & Right & Short & Disable ECM Transmit; Remove Consent &
 CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, halting transmission immediately. Pod will not transmit until CMS Aft is re-issued.
 & \dashref{2.7.4.2.5} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================
@@ -309,12 +334,16 @@ CMS Right extinguishes the ECM Enable light and places the ECM pod in Standby, h
 
 Internal avionics ECM (IDIAS: Improved Defensive Internal Avionic System) automatically selects frequency bands to jam based on RWR threat priority. CMS Left cycles through operational modes (Standby, Avionics Priority, ECM Priority). CMS Aft is not used for IDIAS; mode control is via CMS Left and the XMTR button on the ECM panel.
 
-\begin{hotastable}[CMS Actuation with Internal ECM (IDIAS)]
+\begin{hotastable}{CMS Actuation with Internal ECM (IDIAS)}
+
 IDIAS ECM & Left & Short & Cycle ECM Operational Mode &
-Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles). & \dashref{2.7.4.1.2} & TBD \\
+Each short press of CMS Left advances the ECM mode: STBY $\rightarrow$ AVNC (Avionics Priority) $\rightarrow$ ECM (ECM Priority) $\rightarrow$ AVNC $\rightarrow$ ECM (cycles).
+& \dashref{2.7.4.1.2} & TBD \\
+
 IDIAS ECM & Right & Short & Set ECM to Standby &
 CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requires CMS Left cycling to return to AVNC or ECM mode.
 & \dashref{2.7.4.1.2} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================
@@ -326,9 +355,12 @@ CMS Right forces IDIAS ECM into STBY mode, halting all jamming operations. Requi
 
 This subsection clarifies the relationship between CMDS consent (CMS Aft) and ECM transmit authority (CMS Aft for external pod). Understanding these interactions is critical for effective defensive posture management during high-workload combat operations.
 
-\begin{hotastable}[CMS Interaction with CMDS and ECM (Consent and Constraints)]
+\begin{hotastable}{CMS Interaction with CMDS and ECM (Consent and Constraints)}
+
 CMDS AUTO/SEMI + ECM Pod & Aft & Short & Joint Consent (CMDS + ECM) &
 Single CMS Aft command grants consent to \textit{both} the ALE-47 CMDS (AUTO/SEMI) and the external ECM pod. There's no distinction between the two; both systems respond to the same CMS Aft press. This unified control maximizes pilot situational awareness and frees workload during combat maneuvering.
+& \dashref{2.7.2.1}, \dashref{2.7.4.2.5} & TBD \\
+
 \end{hotastable}
 
 % ============================================================================

@@ -1,43 +1,19 @@
 % ============================================================================
 % FALCON BMS TMS/DMS/CMS HOTAS GUIDE
-% WIP FILE TEMPLATE V1.0
+% WIP FILE TEMPLATE V1.0 — FINAL (Briefing v0.2.0.1 + TOC Fix)
 % ============================================================================
-%
+
 % IMPORTANTE: Este é um TEMPLATE padronizado para arquivos WIP (Work-In-Progress)
 % que serão integrados ao guide.tex.
-%
-% Nomenclatura: Siga wip-naming-v1.4
-%   Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
-%   Exemplo: section-C5-S2-cms-actuation-hotas-tables-review-2026-01-18.tex
-%
+
+% Nomenclatura: Siga wip-naming-v1.3
+% Padrão: section-C{N}-S{M}[-S{K}]-{titulo}-{status}-{data}.tex
+% Exemplo: section-C5-S2-cms-actuation-hotas-tables-final-2026-01-10.tex
+
 % Status: dev | review | final | approved | deprecated
 % Locação: WIP/ (ativo) | ARCHIVE/ (aprovado/descartado)
-%
-% Instruções:
-%   1. Copie este arquivo: cp template-wip-V1.0.tex section-C{N}-S{M}-{slug}-{status}-{data}.tex
-%   2. Descomente linhas 33-34 (abaixo) se compilar isoladamente
-%   3. Atualize bloco METADATA (linhas 52-65)
-%   4. Escreva seu conteúdo entre linhas 161 e 500 (dentro do \section)
-%   5. Compile: pdflatex section-C{N}-S{M}-{slug}-{status}-{data}.tex
-%   6. Para integração em guide.tex: delete TODO PREAMBLE COMMENTED abaixo, mantenha conteúdo
-%
-% ============================================================================
 
-% ============================================================================
-% TODO PREAMBLE COMMENTED
-% ============================================================================
-% Descomente as 2 linhas abaixo para compilar este arquivo isoladamente:
-% Para ativar: Remova os símbolos % dos próximos 2 linhas
-%
-% % BEGIN-STANDALONE-COMPILATION
-% % END-STANDALONE-COMPILATION
-%
-% Se descomentadas, este bloco ATIVA o preamble completo abaixo.
-% Para integração em guide.tex, DELETE TODAS as linhas de % até \begin{document}
-% inclusive, mantendo apenas o conteúdo de \section até \end{document}.
-%
-
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 
 % --------------------------------------------------------------------------
 % BASIC ENCODING AND LANGUAGE
@@ -73,7 +49,6 @@
 \definecolor{headerblue}{HTML}{003366}
 \definecolor{rowgray}{HTML}{F5F5F5}
 \definecolor{subheadgray}{HTML}{E0E0E0}
-
 \usepackage[pdfencoding=auto, psdextra, colorlinks=true, linkcolor=linkblue, citecolor=linkred, urlcolor=linkblue, breaklinks=true]{hyperref}
 \usepackage{bookmark}
 
@@ -105,8 +80,8 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
-% HOTAS table environment (per BRIEFING v0.1.4.1)
-\newenvironment{hotastable}[1][]{%
+% HOTAS table environment (Briefing v0.2.0.1, Section 6)
+\newenvironment{hotastable}[1]{%
 \small
 \renewcommand{\arraystretch}{1.25}
 \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
@@ -140,19 +115,19 @@
 % SIMPLE REFERENCE MACROS FOR BMS DOCS
 % --------------------------------------------------------------------------
 
-\newcommand{\dashref}[1]{Dash-34, section~#1}
-\newcommand{\dashone}[1]{Dash-1, section~#1}
-\newcommand{\trnref}[1]{BMS Training Mission~#1}
-\newcommand{\trnman}{BMS Training Manual 4.38.1}
-\newcommand{\bmsver}{Falcon BMS~4.38.1}
-\newcommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
+\providecommand{\dashref}[1]{Dash-34~\S~#1}
+\providecommand{\dashone}[1]{Dash-1~\S~#1}
+\providecommand{\trnref}[1]{TRN~#1}
+\providecommand{\trnman}{BMS Training Manual 4.38.1}
+\providecommand{\bmsver}{Falcon BMS~4.38.1}
+\providecommand{\dashrefs}[1]{\textit{TO 1F-16CMAM-34-1-1}, Dash-34, sections \texttt{#1}}
 
 % --------------------------------------------------------------------------
-% VERSION CONTROL MACROS (WIP metadata, overridden by guide.tex)
+% VERSION CONTROL MACROS
 % --------------------------------------------------------------------------
 
 \newcommand{\docversion}{WIP Template v1.0}
-\newcommand{\docbuild}{20260109}
+\newcommand{\docbuild}{20260110}
 \newcommand{\fulldocversion}{\docversion+\docbuild}
 
 % --------------------------------------------------------------------------
@@ -163,13 +138,11 @@
 \graphicspath{{fig/}}
 
 % --------------------------------------------------------------------------
-% TITLE (For Standalone Compilation Only)
+% TITLE
 % --------------------------------------------------------------------------
 
 \title{TMS, DMS and CMS Usage Guide for \bmsver}
-
 \author{Carlos ``Metal'' Nader}
-
 \date{Version \fulldocversion{} | January 2026}
 
 % --------------------------------------------------------------------------
@@ -180,19 +153,21 @@
 
 \maketitle
 
+\newpage
+
 \tableofcontents
 
-\clearpage
+\newpage
 
 % ============================================================================
 % WIP FILE METADATA (NOT RENDERED IN PDF)
 % ============================================================================
-%
-% File Name: template-wip-V1.0.tex
+
+% File Name: section-C{N}-S{M}-{slug}-{status}-{date}.tex
 % WIP Naming Convention: v1.3
 % Target Chapter: C{N} (Chapter Title)
-% Target Section: {S{M}} (Section Title)
-% [Target Subsection: {S{K}} (Subsection Title) --- OPTIONAL]
+% Target Section: S{M} (Section Title)
+% [Target Subsection: S{K} (Subsection Title) — OPTIONAL]
 %
 % WIP Status: dev | review | final | approved | deprecated
 % Created: YYYY-MM-DD
@@ -203,14 +178,13 @@
 % Table Fill Status: 0-100%
 %
 % Notes:
-%   - [Describe what's done, what's pending, open questions]
-%   - [Cross-references to other WIP files or guide.tex sections]
-%   - [Any divergences from briefing or validation issues]
-%
-% ============================================================================
+% - [Describe what's done, what's pending, open questions]
+% - [Cross-references to other WIP files or guide.tex sections]
+% - [Any divergences from briefing or validation issues]
 
 % ============================================================================
-% TEMPLATE STRUCTURE --- Replace section/subsection headers with your content
+% ============================================================================
+% TEMPLATE STRUCTURE — Replace section/subsection headers with your content
 % ============================================================================
 
 \section{Section Title}
@@ -225,11 +199,13 @@
 \label{sec:C{N}-{slug}-{subslug}}
 
 % Status: [Narrative | Tables | Both] {0-100%}
-
 % [Write content here. Example hotastable structure below:]
 
-\begin{hotastable}[Table Caption]
-State & Dir & Act & Function & Effect / Nuance & Dash34 & Train \\
+\begin{hotastable}{Table Caption Here}
+
+% Example row (delete this and add your own):
+% State & Dir & Act & Function & Effect / Nuance & Dash34 & Train \\
+
 \end{hotastable}
 
 \subsection{Subsection Title}
