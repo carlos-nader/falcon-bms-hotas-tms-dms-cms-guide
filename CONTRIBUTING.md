@@ -220,6 +220,7 @@ We value all contributions, from small corrections to major new sections!
 ## 📞 Contact
 
 **Email:** carlos.snm@gmail.com
+**Falcon BMS Forum Post:** https://forum.falcon-bms.com/topic/32541/in-development-tms-dms-cms-usage-guide-public-project?_=1768013631558
 
 **How to reach out:**
 - Report issues or suggest improvements
