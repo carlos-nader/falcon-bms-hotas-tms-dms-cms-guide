@@ -4,7 +4,7 @@
 % ============================================================================
 
 % Nomenclatura (WIP-NAMING-v1.4):
-% section-C5-S2-cms-actuation-final-2026-01-10.tex
+% section-C5-S2-cms-actuation-review-2026-01-10.tex
 % ├─ section: type identifier
 % ├─ C5: target chapter 5 (CMS)
 % ├─ S2: target section 2 (CMS Switch Actuation)
@@ -73,6 +73,7 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{tabularx}
+\usepackage{caption}
 
 % Custom Columns
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
@@ -81,33 +82,36 @@
 
 % HOTAS table environment (per BRIEFING v0.2.0.1, Section 6)
 \newenvironment{hotastable}[1]{%
-\small
-\renewcommand{\arraystretch}{1.25}
-\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-\caption{#1}\\
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endhead
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endfirsthead
-\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-\endfoot
-\endlastfoot
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1} \label{tab:#1} \\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  %
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  %
+  \multicolumn{7}{r}{\small\emph{Continued on next page...}} \\
+  \endfoot
+  %
+  \endlastfoot
 }{%
-\end{longtable}
+  \end{longtable}%
 }
 
 % --------------------------------------------------------------------------
@@ -142,7 +146,7 @@
 
 \title{F-16 Countermeasures Management Switch (CMS)\\[0.2cm]Section 5.2: CMS Switch Actuation\\[0.2cm]{\small \bmsver{}}}
 \author{Carlos ``Metal'' Nader}
-\date{WIP Status: final | Date: 2026-01-10}
+\date{WIP Status: review | Date: 2026-01-10}
 
 % --------------------------------------------------------------------------
 % DOCUMENT BEGIN
