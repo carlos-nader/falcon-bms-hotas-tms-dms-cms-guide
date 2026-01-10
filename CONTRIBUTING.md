@@ -1,4 +1,4 @@
-# Contributing to Falcon BMS HOTAS TMS/DMS/CMS Usage Guide
+# Contributing to HOTAS TMS/DMS/CMS Usage Guide focused on Falcon BMS F-16 Flight Simulator
 
 Thank you for your interest in contributing to this project! This document provides guidelines and instructions for making meaningful contributions.
 
