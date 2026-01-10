@@ -69,35 +69,38 @@
 \newcommand{\imglink}[1]{\hspace{2pt}\hyperref[#1]{\scriptsize\textbf{[Fig]}}}
 
 % HOTAS table environment
-% CORRECTED: [1] instead of [1][] to force caption requirement
+% CORRECTED: \end commands position corrected
 \newenvironment{hotastable}[1]{%
-\small
-\renewcommand{\arraystretch}{1.25}
-\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-\caption{#1}\\
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endhead
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endfirsthead
-\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-\endfoot
-\endlastfoot
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  %
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  %
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  %
+  \endlastfoot
 }{%
-\end{longtable}
+  \end{longtable}
 }
 
 % --------------------------------------------------------------------------
@@ -418,10 +421,17 @@ The Countermeasures Management Switch (CMS) is a four-direction hat switch mount
 
 Its role is to grant the pilot rapid tactical control over the aircraft's defensive posture. This control is operationally critical because defensive decisions frequently occur during high-G maneuvering when hand position cannot be redirected to distant cockpit panels. A pilot executing a 6-G defensive turn cannot simultaneously reach the CMDS MODE knob on the left console or the ECM control panel without abandoning aircraft control. By placing the CMS within thumb reach during full-stick maneuver, the design ensures that no tactical scenario regardless of G-load or workload forces the pilot to choose between aircraft control and defensive system authority. This design philosophy prioritizes pilot sovereignty: direct access to defensive control is never sacrificed for maneuvering demand.
 
-RWR, although not directly linked to CMS, is more than a display device: it is the decision engine for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classi es them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
+RWR, although not directly linked to CMS, is more than a display device: it is the decision engine for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classifies them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
 
 For in-depth explanations about CMDS, ECM and RWR operation, see 
-\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface.
+\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface. As presented in the preceding chapters, condensed diagrams of ECM and other throttle and flight stick functionalities can be found on section \dashrefs{2.1.5}. Below is an image of the F-16 Flight Stick, with the CMD swtich location.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\textwidth]{F-16_Side_Stick_Controller-1.jpg}
+\caption{F-16 Throttle and Flight Stick. Image by Falconpedia (\url{falcon4.wikidot.com}), via Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:F-16_Side_Stick_Controller.jpg}), licensed under the Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0) license.}
+\label{fig:f16_hotas_cms_location}
+\end{figure}
 
 \subsubsection{Interaction with CMDS / ECM}
 

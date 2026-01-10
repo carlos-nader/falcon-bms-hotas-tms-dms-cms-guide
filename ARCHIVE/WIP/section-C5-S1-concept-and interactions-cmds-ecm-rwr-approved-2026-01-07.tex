@@ -11,6 +11,7 @@
 \usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
+\graphicspath{{fig/}}
 \usepackage{fancyhdr}
 \usepackage{setspace}
 \usepackage{parskip}
@@ -87,7 +88,14 @@ Its role is to grant the pilot rapid tactical control over the aircraft's defens
 RWR, although not directly linked to CMS, is more than a display device: it is the \textit{decision engine} for both CMDS and ECM. The RWR continuously evaluates detected threat radars, classifies them (SEARCH, TRACK, LAUNCH), assigns threat priority, and communicates this information to both the ALE-47 CMDS (in AUTO or SEMI mode) and the ECM system (for band selection or jamming initiation).
 
 For in-depth explanations about CMDS, ECM and RWR operation, see 
-\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface.
+\dashrefs{2.7.1, 2.7.2, and 2.7.3}, respectively. This section focuses exclusively on CMS usage and control interface. As presented in the preceding chapters, condensed diagrams of ECM and other throttle and flight stick functionalities can be found on section \dashrefs{2.1.5}. Below is an image of the F-16 Fligh Stick, with the CMD swtich location.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.65\textwidth]{F-16_Side_Stick_Controller-1.jpg}
+\caption{F-16 Throttle and Flight Stick. Image by Falconpedia (\url{falcon4.wikidot.com}), via Wikimedia Commons (\url{https://commons.wikimedia.org/wiki/File:F-16_Side_Stick_Controller.jpg}), licensed under the Creative Commons Attribution-Share Alike 3.0 Unported (CC BY-SA 3.0) license.}
+\label{fig:f16_hotas_cms_location}
+\end{figure}
 
 \subsubsection{Interaction with CMDS / ECM}
 

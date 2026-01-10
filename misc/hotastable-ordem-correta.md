@@ -6,7 +6,7 @@ Use esta configuração em **template-wip-V1.0.tex** e **guide.tex**:
 
 ---
 
-## Código Exato para template-wip-V1.0.tex
+## Código Exato para template-wip-V1.0.tex - CORREÇÃO APLICADA
 
 ```latex
 % HOTAS table environment (Briefing v0.2.0.1, Section 6)
@@ -48,7 +48,7 @@ Use esta configuração em **template-wip-V1.0.tex** e **guide.tex**:
 
 ---
 
-## Código Exato para guide.tex
+## Código Exato para guide.tex - CORREÇÃO APLICADA
 
 ```latex
 % HOTAS table environment

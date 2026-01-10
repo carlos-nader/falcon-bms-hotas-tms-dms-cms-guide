@@ -68,7 +68,7 @@
 
 % --------------------------------------------------------------------------
 % TABLES AND MACROS
-% --------------------------------------------------------------------------
+% CORRECTD: \end commands repositioned --------------------------------------------------------------------------
 
 \usepackage{booktabs}
 \usepackage{array}
@@ -82,33 +82,36 @@
 
 % HOTAS table environment (Briefing v0.2.0.1, Section 6)
 \newenvironment{hotastable}[1]{%
-\small
-\renewcommand{\arraystretch}{1.25}
-\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
-\caption{#1}\\
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endhead
-\rowcolor{headerblue}
-\textbf{\color{white}State} &
-\textbf{\color{white}Dir} &
-\textbf{\color{white}Act} &
-\textbf{\color{white}Function} &
-\textbf{\color{white}Effect / Nuance} &
-\textbf{\color{white}Dash34} &
-\textbf{\color{white}Train} \\
-\endfirsthead
-\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
-\endfoot
-\endlastfoot
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+  \caption{#1}\\
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endfirsthead
+  %
+  \rowcolor{headerblue}
+  \textbf{\color{white}State} &
+  \textbf{\color{white}Dir} &
+  \textbf{\color{white}Act} &
+  \textbf{\color{white}Function} &
+  \textbf{\color{white}Effect / Nuance} &
+  \textbf{\color{white}Dash34} &
+  \textbf{\color{white}Train} \\
+  \endhead
+  %
+  \multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+  \endfoot
+  %
+  \endlastfoot
 }{%
-\end{longtable}
+  \end{longtable}
 }
 
 % --------------------------------------------------------------------------

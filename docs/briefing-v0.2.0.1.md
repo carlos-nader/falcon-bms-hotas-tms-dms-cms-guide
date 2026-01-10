@@ -186,6 +186,7 @@ The LaTeX preamble already includes, among others:
 - Headers/footers via `fancyhdr`.
 - Custom `hotastable` environment with columns (updated v0.1.3):
   - State (1.6 cm), Direction (1.0 cm), Action (1.0 cm), Function (3.4 cm), Effect / Nuance (5.8 cm), Dash34 (1.4 cm), Train (1.4 cm).
+- Header structure: First-page header, then `\endfirsthead`; subsequent-pages header (identical), then `\endhead`. This order ensures correct table numbering across page breaks (see Section 11.5)
 - Helper macros: `\dashref{}`, `\dashone{}`, `\trnref{}`, `\trnman`, `\bmsver`, `\dashrefs{}`.
 - `graphicx` with `fig/` as the figures folder.
 
@@ -796,6 +797,65 @@ The `hotastable` environment is **architecture-locked**: column widths, font siz
 - Column widths are designed to fit exactly 15.6 cm within the 17.0 cm text width (see Section 4.1).
 - Deviations would either break page layout or sacrifice content legibility.
 - `\small` + `\arraystretch = 1.25` is optimised for dense technical tables; empirically validated.
+
+**Header Order (LOCKED):**
+
+The `hotastable` environment MUST follow this exact sequence for header and footer management. This order is mandated by official `longtable` documentation and ensures correct table numbering and page break behavior.
+
+The **correct sequence** is:
+
+```latex
+\begin{longtable}{L{1.6cm} L{1.0cm} L{1.0cm} L{3.4cm} L{5.8cm} L{1.4cm} L{1.4cm}}
+\caption{#1}\\
+%
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endfirsthead              % Marks end of first-page header
+%
+\rowcolor{headerblue}
+\textbf{\color{white}State} &
+\textbf{\color{white}Dir} &
+\textbf{\color{white}Act} &
+\textbf{\color{white}Function} &
+\textbf{\color{white}Effect / Nuance} &
+\textbf{\color{white}Dash34} &
+\textbf{\color{white}Train} \\
+\endhead                   % Marks end of subsequent-pages header
+%
+\multicolumn{7}{r}{\small\emph{Continued on next page}}\\
+\endfoot
+%
+\endlastfoot
+\end{longtable}
+```
+
+**Critical ordering rules:**
+
+1. `\caption{}\\` must come FIRST (inside `longtable`, not before)
+2. First-page header content follows immediately after
+3. `\endfirsthead` MUST mark the END of first-page header (not the beginning)
+4. Subsequent-pages header content (identical to first-page) follows
+5. `\endhead` MUST mark the END of subsequent-pages header
+6. Footer material (`\multicolumn`, `\endfoot`, `\endlastfoot`) follows
+
+**Rationale:**
+
+- This order follows the official `longtable` documentation convention
+- It ensures LaTeX correctly distinguishes first-page headers from subsequent-page headers
+- It guarantees correct table numbering (Table 1, Table 2, etc.) across page breaks
+- The semantic meaning is: "define first-page header, THEN mark it as finished, THEN define subsequent pages, THEN mark those as finished"
+- Reversing the order (placing `\endhead` before `\endfirsthead`) is non-standard and may cause unpredictable behavior in edge cases
+
+**Enforcement:**
+
+All WIP files created from `template-wip-V1.0.tex` must inherit this exact order. Integration of WIP content into `guide.tex` must verify that this order is preserved. Deviations require explicit justification and amendment to this brief.
+
 
 **Template includes empty example row (commented):**
 
