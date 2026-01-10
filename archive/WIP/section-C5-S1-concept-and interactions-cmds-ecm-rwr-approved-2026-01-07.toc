@@ -1,7 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {section}{\numberline {5}CMS --- Countermeasures Management Switch}{2}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Concept and Interaction with CMDS / ECM / RWR}{2}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Concept}{2}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Interaction with CMDS / ECM}{2}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}CMS switch Actuation (all modes)}{4}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}CMS Block and Variant Notes}{5}{subsection.5.3}%
